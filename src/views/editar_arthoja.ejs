@@ -1,0 +1,45 @@
+<% include partials/_header %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-3">
+            <% if (hojaselected) { %>
+          <div class="card">
+              <div class="card-header">
+                  <div class="card-body">
+                      
+                                <form action="/hojastock/editarhojaart/<%=hojaselected._id%>/<%= hojaselected.articulo[0]._id %>" method="post">
+                             
+                                    <label for="">codigo de articulo</label>
+                                    <input type="text" name="codigoart" class="form-control" placeholder="ingrese codigo de articulo" value="<%= hojaselected.articulo[0].codigo %>">
+                                    <label for="">descripcion de articulo</label>
+                                    <input type="text" name="descripcion" class="form-control" value="<%= hojaselected.articulo[0].descripcion %>" placeholder="ingrese descripcion del articulo">
+                                    <label for="">Cantidad de articulos</label>
+                                    <input type="text" name="cantidad" class="form-control" value="<%= hojaselected.articulo[0].cantidad_items %>" placeholder="items">
+                                    <label for="">Observacion</label>
+                                    <textarea name="observacion" id="" cols="10" rows="1" class="form-control"><%= hojaselected.articulo[0].observacion %></textarea>
+                                    <label for="">Completo?</label>
+                                    <input type="text" name="completo" class="form-control" value="<%= hojaselected.articulo[0].completo %>" placeholder="ingrese si vino o no completo y lo que le falta">
+                                    <label for="">Bodega</label>
+                                    <input type="text" name="bodega" class="form-control" value="<%= hojaselected.articulo[0].bodega_final %>" placeholder="ingrese la bodega a la que irá el producto">
+                                    
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-outline-success my-4"><i class="far fa-check-circle fa-2x"></i></button>
+                                    </div>
+                                    </form>
+                            
+                  </div>
+              </div>
+          </div>
+
+           
+        <% } else { %>
+                <h1>no hay ninguna hoja seleccionada</h1>
+
+       <%} %>
+        </div>
+    </div>
+   
+            </div>
+
+</div>
+<% include partials/_footer %>

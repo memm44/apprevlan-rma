@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>E.E Compumicro</title>
+    <!--estilizando con bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    
+</head>
+<body>
+    
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-info">
+            <a class="navbar-brand" href="#">Sistema</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="creacion.html">Principal <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="#">Egresos</a>
+                <a class="nav-item nav-link disabled" href="#">Ensambles</a>
+                
+                </div>
+            </div>
+</nav>
+    <div class="container mt-5 pt-3">
+        
+        <div class="row">
+
+            <!--formulario-->
+            <div class="col-md-12">
+                <div class="card border-success">
+                    <div class="card-header text-center bg-success text-white">
+                        <h3 class="font-weight-light text-uppercase">Formulario de Ingreso</h3>
+                     </div>
+                    <div class="card-body">
+                        <form action="/casos/add" method="POST"  >
+                            <div class="form-row">
+                                <div class="form-group col-md-2 my-2">
+                                <label for="selectTienda" class="font-italic" >Tienda</label>
+                                <select class="custom-select" id="selectTienda" name="tienda">
+                                    <option value="">Seleccionar</option>
+                                    <option value="012 Mejia">012-Mejia</option>
+                                    <option value="015 Machala">015-Machala</option>
+                                    <option value="014 Manta">014-Manta</option>
+                                    <option value="09 Porto Viejo">09-Porto Viejo</option>
+                                    <option value="08 Babahoyo">08-Babahoyo</option>
+                                    <option value="06 Playas">06-Playas</option>
+                                    <option value="03 Loja">03-Loja</option>
+                                    <option value="011 Riobamba">011-Riobamba</option>
+                                    <option value="05 Duran">05-Duran</option>
+                                    <option value="010 Bahia de C">010-Bahia de C</option>
+                                    <option value="016 Daule">016-Daule</option>
+                                    <option value="07 Peninsula">07-Peninsula</option>
+                                    <option value="Montañita">Montañita</option>
+                                    <option value="Otra">Otra</option>
+
+                                </select>
+                                </div>
+                                <div class="form-group col-md-2 my-2 ">
+                                    <label for="" class="font-italic">Numero de Caso</label>
+                                    <input type="text" name="ncaso" value="" placeholder="N#" class="form-control text-uppercase" >
+                                </div>
+                                <div class="form-group col-md-2 my-2 ml-3">
+                                    
+                                            <label for="selectTiposerv" class="font-italic">Tipo de Caso</label>
+                                            <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input" id="r1" value="garantia" name="tipo_caso" >
+                                                    <label class="custom-control-label" for="r1">Garantia</label>
+                                                </div>
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input" id="r2" value="soporte tecnico" name="tipo_caso" >
+                                                    <label class="custom-control-label" for="r2">S Tecnico</label>
+                                                    
+                                                </div>
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input" id="r3" value="stock" name="tipo_caso" >
+                                                    <label class="custom-control-label" for="r3">Stock</label>
+                                                </div>
+                                                
+                                                </div>
+                                                <div class="form-group col-md-2 my-2"id="nfac" >
+                                                    <label for="" class="font-italic">Num Factura</label>
+                                                    <input type="text" name="nfactura" value="" placeholder="N°Fact" class="form-control text-uppercase" >
+                                                </div>
+                                                
+                                </div>
+
+
+                                <hr>
+                            <div class="form-row">
+                                
+                                <div class="form-group col-md-2 my-2">
+                                    <label for="" class="font-italic">Codigo </label>                                      
+                                    <input type="text" name="cod_art" value="" placeholder="Cod" class="form-control text-uppercase" >
+                                </div>
+                                <div class="form-group col-md-3 my-2">
+                                    <label for="" class="font-italic">Descripcion </label>                                      
+                                    <input type="text" name="desc_art" value="" placeholder="Descripcion" class="form-control text-uppercase" >
+                                </div>
+                                <div class="form-group col-md-4 my-2">
+                                    <label for="" class="font-italic">Reporte</label>
+                                    <textarea type="text" name="desc_report" cols="35" placeholder="Ingrese Detalles del Reporte" class="form-control text-uppercase" ></textarea>
+                                </div>
+                                <div class="form-group col-md-2 my-2">
+                                    <label for="" class="font-italic">Serie</label>
+                                    <input type="text" name="num_serie" value="" placeholder="Ingrese Serial" class="form-control text-uppercase" >
+                                </div>
+                                <div class="form-group col-md-1 mt-5">
+                                    <input type="submit" value="Agregar" placeholder="N#" class="btn btn-primary btn-sm" >
+                                </div>
+
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-3">  
+                                    <h4>Agregados</h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <!--AQUI MOSTRARA LOS ELEMENTOS AGREGADOS-->
+                                <div class="col-md-12">  
+                                    <h2>Construyendo..</h2>
+                                </div>
+                            </div>
+                                <div class="form-row">
+                                        
+                                </div>
+                                        <div class="form-row "> 
+                                            <div class="form-grup col-md-2">
+                                                <div class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input" id="ch1" >
+                                                <label class="custom-control-label mr-2" for="ch1">Tramite G ---></label>
+                                                </div>  
+                                            </div>                                 
+                                            <div class="form-group col-md-3">
+                                                <label for="" class="font-italic sr-only">Tramite </label>
+                                                <input type="text" name="fact_tramite_desc" value="" placeholder="Codigo/Descripcion" class="form-control">
+                                            </div>
+                                            <div class="form-group col-md-1">
+                                                <label for="" class="font-italic sr-only">Valor</label>
+                                                <input type="text" name="fact_tramite_val" value="0" placeholder="$$$" class="form-control">
+                                            </div>
+                                            <div class="form-grup col-md-2">
+                                                <div class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input" id="ch2" >
+                                                <label class="custom-control-label mr-2" for="ch2">Revision ----></label>
+                                                </div>
+                                            </div>      
+                                            <div class="form-group col-md-3 mb-2">
+                                                <label for="" class="font-italic sr-only">Fact Revisión</label>
+                                                <input type="text" name="fact_rev_desc" value="" placeholder="Codigo/Descripcion" class="form-control">
+                                            </div>
+                                            <div class="form-group col-md-1 mb-2">
+                                                <label for="" class="font-italic sr-only">Valor</label>
+                                                <input type="text" name="fact_rev_val" value="0" placeholder="$$$" class="form-control">
+                                            </div>
+                                            
+                                            
+                                        </div>
+                                            <div class="form-row">  
+                                                <div class="form-group col-md-2">
+                                                    <div class="custom-control custom-checkbox mb-3">
+                                                    <input type="checkbox" class="custom-control-input" id="ch3" >
+                                                    <label class="custom-control-label" for="ch3">S.Tecnico ----></label>
+                                                    </div>  
+                                                </div>
+                                                 <div class="form-group col-md-3">
+                                                <label for="" class="font-italic sr-only">Fact Serv. Técnico</label>
+                                                <input type="text" name="fact_st" value="" placeholder="Codigo/Descripcion" class="form-control">
+                                            </div>
+                                            <div class="form-group col-md-1">
+                                                <label for="" class="font-italic sr-only">Valor</label>
+                                                <input type="text" name="val_fact_st" value="0" placeholder="$$$" class="form-control">
+                                            </div>
+                                            <div class="form-group col-md-2">
+                                                <div class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input" id="ch4" >
+                                                <label class="custom-control-label" for="ch4">Otra Fact ----></label>
+                                                </div>  
+                                            </div>
+                                            <div class="form-group col-md-3 ">
+                                                <label for="" class="font-italic sr-only">Fact Otros</label>
+                                                <input type="text" name="fact_otros" value="" placeholder="Codigo/Descripcion" class="form-control">
+                                            </div>
+                                            <div class="form-group col-md-1">
+                                                <label for="" class="font-italic sr-only">Valor</label>
+                                                <input type="text" name="val_fact_otros" value="0" placeholder="$$$" class="form-control">
+                                            </div>  
+
+                                            </div>
+
+                                            <div class="form-row">   
+
+                                                <div class="form-group">
+                                                    <h3>prueba</h3>
+                                                </div>
+                                            </div>
+                                                
+                                   
+                        </form> 
+                    </div>
+                </div>
+            </div>  
+        </div>
+
+    </div>
+            <!-- listar elementos-->
+               
+        </div>
+    <script src="js/jquery-3.3.1.slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/custom.js"></script
+
+</body>
+</html>
+
+        

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth;">
+
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>E.E Compumicro</title>
+        <!--estilizando con bootstrap -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="fonts/all.min.css">
+        <link rel="stylesheet" href="fonts/miestilo.css">
+</head>
+<% if(mensaje && mensaje.length>0){%>
+    <div class="alert alert-info">
+        <%= mensaje %>
+    </div>
+    <% }%>
+<div class="container-fluid mx-2">
+        <div class="row">
+            <div class="col-md-3">
+                    <form action="/monitor/buscarfechatecnico" method="POST" target="_blank">
+                        <div class="input-group">
+                                <input type="text"  name="busqueda" class="form-control form-control-sm my-1" value="" placeholder="Fecha ó Codigo de Caso" >
+                                <div class="input-group-append">
+                                <button type="submit" class="btn btn-outline-dark btn-sm"><i class="fas fa-search fa-2x"></i>   </button>
+                                </div>
+                            </div>
+                    
+                   
+            </div>
+            <div class="col-md-3 offset-1">
+                <h5 class="text-center"><bold><u> Reporte de Actividades </u></bold></h5>
+                
+                    
+                
+            </div>
+        </form>
+        </div>
+    <div class="row">
+            
+        <div class="card ">
+            <div class="card-body m-1 p-1">
+                   
+                    <table class="table table-bordered table-hover table-sm " >
+                            <thead class="thead-dark">
+                                <th style="width:70px" class="p-0 m-0"><small>Tienda</small></th>
+                                <th style="width:50px" class="p-0 m-0"><small>Caso</small></th>
+                                <th style="width:100px"class="p-0 m-0" ><small>Articulo</small></th>
+                                <th style="width:250px" class="p-0 m-0"><small>Reporte</small></th>
+                                <th style="width:15px" class="p-0 m-0"><small>inicio</small></th>
+                                <th style="width:20px" class="p-0 m-0"><small>fin</small></th>
+                                <th style="width: 740px" class="p-0 m-0" ><small>Actividad realizada</small></th>
+                                <th style="width: 70px" class="p-0 m-0" ><small>Fecha</small></th>
+                            </thead>
+                            <tbody>
+                                   
+                         <% if ( actividades &&  actividades.length>0){ %>
+                                <% actividades.forEach(function(activ){ %>
+                                <tr>
+                                    
+                                    <td class="p-0 m-0"><small>
+                                            <%= activ.tienda %></small></td>
+                                    <td class="p-0 m-0"><small>
+                                            <%= activ.codigocaso %></small></td>
+                                    <td class="p-0 m-0"><small>
+                                            <%= activ.articulorev %></small></td>
+                                    <td class="p-0 m-0"><small>
+                                            <%= activ.reporte %></small></td>
+                                    <td class="p-0 m-0"><small>
+                                            <%= activ.hinicio %></small></td>
+                                    <td class="p-0 m-0"><small>
+                                            <%= activ.hfin %></small></td>
+                                    <td class="p-0 m-0"><small>
+                                                <%= activ.act_realizada %></small></td>
+                                                <td class="p-0 m-0"><small>
+                                                                <%= activ.fecha %></small></td>
+                                </tr>   
+                                
+
+             
+                                <%})%>
+                            <%} else {%>
+                                    <h1 class="text-center">NO se consiguieron actividades</h1>
+                                <%}%>        
+                                
+                                
+                       <tbody>
+                       </table>    
+            
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="js/jquery-3.3.1.slim.min.js"></script>
+<script src="js/custom.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/popper.min.js"></script>

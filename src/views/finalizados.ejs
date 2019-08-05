@@ -1,0 +1,47 @@
+<% include partials/_header %>
+
+<div class="container pb-5 mb-5">
+        
+    <div class="row">
+        <div class="col">
+        <div class="card">
+        <div class="card-header bg-success text-white">
+            <h4><i class="fas fa-clipboard-check fa-2x"></i></i> Casos Finalizados</h4>
+            </div>        
+            <div class="card-body">
+                <table class="table table-bordered table-hover table-sm">
+                    <thead class="bg-info">
+                    <th><small>N°</small></th>
+                    <th><small>tienda</small></th>
+                    <th><small>articulo</small></th>
+                    <th><small>n de caso</small></th>
+                    <th><small>tipo caso</small></th>
+                    <th><small>rep_final</small></th>
+                    <th><small>operaciones BD</small></th>
+                </thead>
+                <tbody>
+                    <% for (var i=0;i<casos.length;i++) {%>
+                        <tr> 
+                            <td><small><%= i+1 %></small></td>
+                            <td><small><%= casos[i].tienda.nombre %></small></td>
+                            <td><small><%= casos[i].articulos[0].descripcion %></small></td>
+                            <td><small><%= casos[i].ncaso.codigocaso %></small></td>
+                            <td><small><%= casos[i].tipo_caso %></small></td>
+                            <td><small><%= casos[i].rep_final %></td>    
+                            <td>
+                                
+                                <a href="/finalizados/<%= casos[i]._id %>" target="_blank" class="btn btn-info btn-sm">Reporte</a>
+                            </td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </div>
+    </div>
+    
+</div>
+</div>
+
+<% include partials/_footer %>

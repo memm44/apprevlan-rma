@@ -1,0 +1,29 @@
+<% include partials/_header %>
+
+<div class="container py-5 my-5">
+    <div class="row ">
+        <div class="col-md-5 mx-auto">
+            <div class="card border-dark">
+                
+                    <div class="card-header border-dark">
+                            <h4><i class="fas fa-user-tag fa-2x"></i> Inicio de Sesión <i class="fab fa-rev fa-3x"></i></h4>
+                            <% if(mensaje && mensaje.length>0){%>
+                                <div class="alert alert-info" role="alert"><%= mensaje[0] %></div>
+                                <% }%>
+                        </div>
+                <div class="card-body">
+            
+                    <form action="login" method="post">
+                        <input required type="email" class= "form-control my-2" name="correo" id="" placeholder="ingrese usuario">
+                        <input required type="password" class= "form-control my-2" name="contrasena" id="" placeholder="ingrese contraseña" >
+                        <input  type="submit" class="btn btn-dark" value="Enviar">
+                    </form>
+                </div>
+            
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<% include partials/_footer %>

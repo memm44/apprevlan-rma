@@ -1,0 +1,83 @@
+<div class="container">
+   <footer class="bg-secondary m-2 p-2 rounded mx-auto d-block">
+    <p class="text-center m-0 p-0" ><small><em>© MIT Professional Education  2019 RevLan 1.0 Todos los Derechos Reservados </em><strong><i class="fab fa-github fa-3x text-white"></i>  memm44@gmail.com </strong> </small> </p>
+
+   </footer>
+</div>
+</div>
+<script src="js/jquery-3.3.1.slim.min.js"></script>
+<script src="js/custom.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/all.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script>
+        $(document).ready(function () {
+          
+    $('.elimina').on('click', function () {
+            var resp = confirm('seguro que lo desea eliminar ? ya no podra restaurar este registro')
+            if (resp) {
+            return true;
+            
+            }else{
+            return false;
+            }
+        
+        });  
+        $('.guarda').on('submit', function () {
+      
+        window.location.reload(true)
+    });
+      $('#consulta').on('click', function (e) {
+        var valor= $('#codigocaso').val()  
+       
+        if (valor==='') {
+                alert('debes ingresar algun dato')
+                return false;
+            }
+        
+      var url=`/json/${valor}`;
+          e.preventDefault()
+          fetch(url, {
+          method: 'get' // opcional 
+          })
+          .then(res => res.json())
+              .then(datos =>{ 
+                  
+                if (datos===null) {
+                    info = `<br><i class="far fa-dizzy fa-5x my-2"></i> <h5>NO SE ENCONTRÓ ESE NUMERO DE CASO!</h5>`
+                    $('#resultado_caso').html(info);
+                    }
+                  var info = `<table class="table table-bordered table-hover table-sm">
+                            <i class="far fa-hand-point-down fa-4x my-3"></i>
+                            <tr>    
+                                    <th scope="row"> <small><strong>Encargado<strong/> </small></th>
+                                    <td style="width:350px"><small>${datos.encargado[0].usuario}</small> </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><small><strong>Status</strong></small> </th>
+                                    <td style="width:350px"><small>${datos.status.titulo}</small> </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><small><strong>Detalle Status</strong></small> </th>
+                                    <td style="width:350px"><small>${datos.status.descripcion}</small> </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><small><strong>Tipo de Caso</strong></small> </th>
+                                    <td style="width:350px"><small>${datos.tipo_caso}</small> </td>
+                                </tr>
+                    </table>`
+                    
+                  $('#resultado_caso').html(info);
+                  console.log(datos)
+                    
+              })
+          .catch(function(err) { 
+          console.error(err); 
+          });
+      });
+      
+  });
+  
+        </script>
+</body>
+</html>

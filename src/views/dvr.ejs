@@ -1,0 +1,176 @@
+<% include partials/_header %>
+
+<div class="container">
+    <% if (mensaje && mensaje.length>0) {%>
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+                <img src="img/comprobado.png" alt="..."><strong> <%= mensaje %></strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>   
+    <% } %>
+    <% if (mensajebad && mensajebad.length>0) {%>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <img src="img/error.png" alt="..."><strong> <%= mensajebad %></strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>   
+    <% } %> 
+    <div class="row">
+        <div class="col-12">
+
+        
+        <div class="card border-dark">
+            
+             
+            <div class="card-header border-dark">
+                <div class="row">
+                  
+                    <div class="col-md-12" >
+                           <h4 class="text-center"> <i class="far fa-hdd fa-2x"></i> Ensamble DVR</h4> 
+
+                    </div>
+                 
+
+                </div>
+                
+            </div>
+            
+            <div class="card-body">
+                    <form action="/dvr/add" method="POST" id="form1" class="guarda">
+                        <div class="row">
+
+                                <div class="col-md-2 my-2">
+                                        <label for="">Total Instalaciones</label>
+                                        <input name="numero" id="numero" type="number" class="form-control"  placeholder="" value="<%= (ultimo!== null)? ultimo.serieEnsamble.numero+1 : 1  %>">
+                                    </div>
+                            <div class="col-md-3 my-2">
+                                <label for="">Nueva serie a generar:</label>
+                                <input name="serienueva" id="serienueva" type="text" placeholder= "nueva " class="form-control" readonly >
+                            </div>
+                            <div class="col-md-2 my-2">
+                                    <label for="">Fecha de hoy:</label>
+                                    <input name="fechahoy" id="fechahoy" type="text" class="form-control" readonly >
+                                </div>
+                            
+                            <div class="col-md-4 my-2">
+                                    <label for="">Ultima serie guardada</label>
+                                    <input name="ultimaserie" id="ultimaserie" type="text" placeholder= "" value="<%= (ultimo!== null)? ultimo.serieEnsamble.serie +' por: '+ultimo.usuario.usuario: 'vacio'  %>" class="form-control" readonly>
+                            </div>
+                        </div>
+                        <div class="row">
+                                
+                                    <div class="col-md-3">
+                                            
+                                            <label for="">DVR Descripcion</label>
+                                            <input name="dvrdesc" type="text" placeholder="Modelo del dvr" class="form-control text-uppercase">
+            
+                                        </div>
+                                    <div class="col-md-3">
+                                            <label for="">DVR serie</label>
+                                            <input name="dvrserie" type="text" placeholder="Serie del DVR" class="form-control text-uppercase">
+
+                                    </div>
+                                    <div class="col-md-3">
+                                            <label for="">HDD Descripcion</label>
+                                    <input name="hdddesc" type="text" placeholder="Descrip. y Capacidad" class="form-control text-uppercase">
+                                    </div>
+                                    <div class="col-md-3">
+                                            <label for="">HDD serie</label>
+                                            <input name="hddserie" type="text" placeholder="Serie del Disco" class="form-control text-uppercase">
+                                        </div> 
+                                
+                </div>
+                <div class="row">
+                    <div class="col-md-2 offset-5 my-2">
+                            <button type="submit"  class="btn btn-outline-success btn-sm my-2 btn-block guardar"><i class="far fa-save fa-2x"></i></button>
+
+                    </div>
+                </form>
+                </div>
+                <div class="row">
+       
+                        <div class="col-md-12">
+                
+                                <table class="table table-bordered table-hover table-sm ">
+                                            
+                                        <thead class="thead-dark">
+                                            <th><small>N#</small></th>
+                                            <th><small>Serie</small></th>
+                                            <th><small>DVR Modelo </small></th>
+                                            <th><small>DVR Serie</small></th>
+                                            <th><small>HDD Modelo y Capacidad</small></th>
+                                            <th><small>HDD Serie</small></th>
+                                            
+                                            <th><small>Operaciones</small></th>
+                                        </thead>
+                                        <tbody>
+                                                <% todos.forEach(function(sel,cont=0){ %>
+                                            <tr>
+                                                <td><small> <%= cont+=1 %> </small></td>
+                                                <td><small> <%= sel.serieEnsamble.serie %> </small></td>
+                                                <td><small><%= sel.dvr.descripcion %></small></td>
+                                                <td style="width:250px"><small><%= sel.dvr.serie %></small></td>
+                                                <td><small><%= sel.disco_duro.descripcion %></small></td>
+                                                <td style="width:180px" ><small><%= sel.disco_duro.serie %></small></td>
+                                               
+                                                <td style="width:100px"><small>
+                                                        <a href="/dvr/delete/<%= sel._id %>" class="btn btn-danger btn-sm elimina"><i class="far fa-trash-alt"></i></a>
+                                                        <a href="/dvr/editar/<%= sel._id %>" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
+                                                       
+                                                </td>
+                                            </tr>
+                                            <%})%>  
+                                        <tbody>
+                                    </table>  
+                        </div>
+                         
+                    </div>   
+                    <div class="row">
+                            
+                            <div class="col-3 offset-5">
+                                <a href="/dvr/tdvrs/1" class="btn btn-link">TODOS LOS DVR</a>
+                            </div>
+                            </div> 
+                
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+<% include partials/_footer %>
+
+<script>
+$(document).ready(function () {
+    var fecha = new Date
+    var dia = fecha.getDate()
+    var mes = fecha.getMonth()+1
+    if (dia<=9){
+        dia= '0'+dia
+    }
+    if (mes<=9){
+        mes= '0'+mes
+    }
+    var anio = fecha.getFullYear()
+    var fechacorta= `${anio}-${mes}-${dia}` 
+    var fechacortaserie= `${anio}${mes}${dia}`
+    $('#fechahoy').val(fechacorta);
+    var numero = $('#numero').val();
+    if (numero<10) {
+        numero ='0'+numero
+    }
+    $('#serienueva').val(`${fechacortaserie}${numero}`)
+
+    // function generalaserie (fecha,tipo_proc,numero) {
+    //    numero = $('#numero').val();
+    //     return `${fechacorta}${numero}`
+    // }
+
+
+});
+
+
+
+</script>

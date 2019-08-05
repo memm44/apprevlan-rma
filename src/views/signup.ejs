@@ -1,0 +1,29 @@
+<% include partials/_header %>
+
+<div class="container">
+    <div class="row">
+            
+        <div class="col-md-5 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    <h4><i class="fas fa-user-plus fa-2x"></i> Nuevo usuario</h4>
+                </div>
+                <div class="card-body">
+                        <% if(mensaje && mensaje.length>0){%>
+                            <div class="alert alert-<%= clase %>" role="alert"><%= mensaje[0] %></div>
+                            <% }%>
+                    <form action="add" method="post">
+                        <input type="text" class= "form-control my-2" name="usuario" id="" placeholder="ingrese nombre de usuario">
+                        <input required type="email" class= "form-control my-2" name="correo" id="" placeholder="ingrese correo electronico">
+                        <input type="password" class= "form-control my-2" name="contrasena" id="" placeholder="ingrese contrasena" >
+                        <input type="submit" class="btn btn-dark" value="Enviar">
+                    </form>
+                </div>
+            
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<% include partials/_footer %>

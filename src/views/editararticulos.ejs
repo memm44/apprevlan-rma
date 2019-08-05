@@ -1,0 +1,53 @@
+<% include partials/_header %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-3">
+            <% if (casoselected) { %>
+          <div class="card">
+              <div class="card-header">
+                  <div class="card-body">
+                      
+                    <form action="/articulos/editararticulos/<%=casoselected._id %>/<%=casoselected.articulos[0]._id %>" method="POST">
+                        
+                        <label for="">codigo de articulo </label>
+                        <input type="text" id="c"name="codigo" class="my-2 form-control" placeholder="codigo" value="<%= casoselected.articulos[0].codigo %>">
+                        <label for="">Descripcion articulo </label>
+                        <input type="text" name="desc_art" class="my-2 form-control" placeholder="descripcion" value="<%= casoselected.articulos[0].descripcion %>">
+                        <label for="">N de serie </label>
+                        <input type="text" name="nserie" class="my-2 form-control" placeholder="nserie" value="<%= casoselected.articulos[0].nserie %>">
+                        <label for="">Numero de factura </label>
+                        <input type="number" min="0" name="nfact" class="my-2 form-control" placeholder="nfact" value="<%= casoselected.articulos[0].nfact %>">
+                        <label for="">Descripcion de reporte </label>
+                        <input type="text" name="desc_reporte" class="my-2 form-control" placeholder="reporte" value="<%= casoselected.articulos[0].reporte %>">
+                        <label for="">Codigo de Facturacion Computienda</label>
+                        <input type="text" name="ctdfact" value="<%=casoselected.articulos[0].facturacionCTienda.codigo %>" placeholder="Cod/descripcion" class="form-control">
+                        <label for="">Valor de Facturacion Computienda</label>
+                        <input type="number" min="0" name="valctfact" value="<%=casoselected.articulos[0].facturacionCTienda.valor %>" placeholder="$$$" class="form-control">
+                        <label for="">Codigo de Facturacion Compumicro</label>
+                        <input type="text" name="cmdfact" value="<%=casoselected.articulos[0].facturacionCmejia.codigo %>" placeholder="Cod/descripcion" class="form-control">
+                        <label for="">Valor de Facturacion Compumicro</label>
+                        <input type="number" min="0" name="valcmfact" value="<%=casoselected.articulos[0].facturacionCmejia.valor %>" placeholder="$$$" class="form-control"> 
+                        <label for="">Transferencias</label>
+                        <input type="text" name="transferencias" value="<%=casoselected.articulos[0].transferencias %>" placeholder="Ejemplo:Mejia>Loja:4555,Loja>duran:5588 " class="form-control my-2">
+                        <label for="">Estado Final</label>
+                        <input type="text" name="efinal" value="<%=casoselected.articulos[0].estado_final %>" placeholder="Estado final del articulo " class="form-control my-2">
+                        
+                        <button type="submit" class="btn btn-primary btn-block my-3" ><i class="fas fa-check-circle fa-2x"></i></button>
+                        </form>
+
+                  </div>
+              </div>
+          </div>
+
+           
+        <% } else { %>
+                <h1>no hay ningun caso seleccionado</h1>
+
+       <%} %>
+        </div>
+    </div>
+   
+            </div>
+
+</div>
+<% include partials/_footer %>

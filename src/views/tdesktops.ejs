@@ -1,0 +1,138 @@
+<% include partials/_header %>
+
+<div class="container">
+    
+        
+     <div class="row">
+         <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">               
+                    <div class="row">
+                        <div class="col-md-3">
+                                <form action="/desktops/buscar" method="post">
+                                    <div class="input-group">
+                                        <input type="text"  name="busqueda" class="form-control form-control-sm my-1" value="" placeholder="fecha ó serie">
+                                        <div class="input-group-append">
+                                        <button type="submit" class="btn btn-outline-dark btn-sm"><i class="fas fa-search fa-2x"></i></button>
+                                        </div>
+                                    </div>
+                            </form>
+                        </div>
+                        <div class="col-md-4 offset-2">
+                               <h4><i class="fas fa-database fa-2x"></i> Series Desktop </h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+         
+                    <table class="table table-bordered table-hover table-responsive ">
+                            
+                        <thead class="thead-dark">
+                            <th><small>n#</small></th>
+                            <th><small>Serie</small></th>
+                            <th><small>Board modelo </small></th>
+                            <th><small>Board serie</small></th>
+                            <th><small>Proc Modelo</small></th>
+                            <th><small>Proc  Serie</small></th>
+                            <th><small>M.Ram Modelo</small></th>
+                            <th><small>M.Ram Serie</small></th>
+                            <th><small>HDD Modelo</small></th>
+                            <th><small>HDD Serie</small></th>
+                            <th><small>UDvd</small></th>
+                            <th><small>UDvdserie</small></th>
+                            <th><small>Case</small></th>
+                            <th><small>operaciones BD</small></th>
+                        </thead>
+                        <tbody>
+                           
+                                <% desk.forEach(function(pc,cont=0){ %>
+                            <tr>
+                                <td><small> <%= cont+=1 %> </small></td>
+                                <td><small> <%= pc.serieEnsamble.serie %> </small></td>
+                                <td><small><%= pc.mainboard.descripcion %></small></td>
+                                <td><small><%= pc.mainboard.serie %></small></td>
+                                <td><small><%= pc.procesador.descripcion %></small></td>
+                                <td><small><%= pc.procesador.serie %></small></td>
+                                <td><small> <%= pc.memoria_ram.descripcion %> </small></td>
+                                <td><small><%= pc.memoria_ram.serie %></small></td>
+                                <td><small><%= pc.disco_duro.descripcion %></small></td>
+                                <td><small><%= pc.disco_duro.serie %></small></td>
+                                <td><small><%= pc.udvd.descripcion %></small></td>
+                                <td><small><%= pc.udvd.serie %></small></td>
+                                <td><small><%= pc.case.descripcion %></small></td>
+                                <td><small>
+                                        <a href="/desktops/delete/<%= pc._id %>" class="btn btn-danger btn-sm eliminapc">X</a>
+                                        <a href="/desktops/editar/<%= pc._id %>" class="btn btn-info btn-sm">A</a>
+                                       
+                                </td>
+                            </tr>
+                            <%})%>  
+                        <tbody>
+                    </table>  
+                </div>
+               
+            </div>
+         
+        </div>
+     </div>
+     <br>   
+        <div class="row">
+            
+            <% if (paginas) {%>
+            <nav class="mx-auto">
+                <ul class="pagination">
+                                    <!-- primera pagina -->
+                    <% if (actual==1) {%>
+                    <li class="page-item disabled">
+                        <a href="#" class="page-link">Primera</a>
+                    </li>
+                    <%} else {%>
+                    <li class="page-item">
+                        <a href="/desktops/tdesktops/1" class="page-link">Primera</a>
+                    </li>
+                    <% } %>
+                                         <!-- paginas -->
+                    <% var i = (Number(actual) >5 ? Number(actual)-4 :1) %>
+                    <% if (i !== 1) {%>
+                  
+                            <a href="<%= i %>" class="page-link">...</a>
+                        <% } %>
+                        <% for (; i<= (Number(actual)+4) && i<= paginas; i++){%>
+                            <% if (i== actual) { %>
+                                <li class="page-item">
+                                    <a href="<%= i %>" class="page-link">
+                                    <%= i %>
+                                    </a>
+                                </li>
+                        <% } else { %>
+                            <li class="page-item">
+                                <a href="/desktops/tdesktops/<%= i %>" class="page-link">
+                                <%= i %>
+                                </a>
+                            </li>
+                            <% } %>
+                    <% if (i == Number(actual)+4 && i < paginas) {%>
+                        <li class="page-item">
+                            <a href="#" class="page-link">...</a>
+                        </li>
+                        <% } %>
+                    <% } %>  
+                                    <!-- ultima pagina -->
+                    <% if (actual==paginas) {%>
+                    <li class="page-item disabled">
+                        <a href="#" class="page-link">Ultima</a>
+                    </li>
+                    <%} else { %>
+                    <li class="page-item">
+                        <a  href="/desktops/tdesktops/<%=paginas%>" class="page-link">Ultimo</a>
+                    </li>
+                    <% } %>
+                </ul>
+            </nav>
+            <% } %>
+        
+       
+    </div>
+</div>
+
+<% include partials/_footer %>

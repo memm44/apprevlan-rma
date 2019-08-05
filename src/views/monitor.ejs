@@ -1,0 +1,134 @@
+<% include partials/_header %>
+<% if (usuario && usuario.correo==="admin1@compumicro.com.ec" || usuario.correo==="admin2@compumicro.com.ec" ||usuario.correo==="memm44@gmail.com" ){ %>
+<% if (mensaje && mensaje.length>0) {%>
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+                <img src="img/comprobado.png" alt="..."><strong> <%= mensaje %></strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>   
+    <% } %>
+   
+<div class="container">
+   
+    
+        <div class="row">
+                <div class="col-md-12">
+                <div class="card border-dark">
+                        <div class="card-header border-dark">
+                                <div class="row">
+                                <div class="col-md-6">
+                                                <h4><i class="far fa-eye fa-2x"></i> Monitor de casos </h4>
+                                </div>
+                                <div class="col-md-4 offset-2">
+                                                <form action="/monitor/buscarrev" method="POST" target="_blank">
+                                                    <div class="input-group">
+                                                            <input type="text"  name="busqueda" class="form-control form-control-sm my-1" value="" placeholder="Codigo de Caso" >
+                                                            <div class="input-group-append">
+                                                            <button type="submit" class="btn btn-outline-dark btn-sm"><i class="fas fa-search fa-2x"></i>   </button>
+                                                            </div>
+                                                        </div>
+                                                </form>
+                                               
+                                        </div>
+                                </div>                      
+                        </div>
+                    <div class="card-body">
+                        
+                        <table class="table table-bordered table-hover table-sm">
+                            <thead class="bg-info">
+                            <th style="width: 80px"><small>Encargado</small></th>
+                            <th style="width: 60px"><small>Tienda</small></th>
+                            <th style="width: 50px"><small>Caso</small></th>
+                            <th style="width: 40px"><small>Fecha</small></th>
+                            <th style="width:70px"><small>Status</small></th>
+                            <th style="width:300px"><small>Detalle Status</small></th>
+                            <th style="width:100px"><small>Tipo de Caso</small></th>
+                            <th style="width:150px" ><small>Articulo/s</small></th>
+                        </thead>
+                        <tbody>
+                          
+                            <% caso.forEach(function(info){ %>
+                                
+                                <tr>
+                                    <td><small>
+                                            <%= info.encargado[0].usuario %></small></td>
+                                    <td><small>
+                                            <%= info.tienda.nombre %></small></td>
+                                    <td><small>
+                                            <%=info.ncaso.codigocaso %></small></td>
+                                    <td><small>
+                                            <%=info.fechaIng %></small></td>
+                                   
+                                    <td><small>
+                                            <%= info.status.titulo %></small></td>
+                                    <td><small>
+                                                <%= info.status.descripcion %></small></td>
+                                    <td><small>
+                                            <%= info.tipo_caso%></small></td>
+                                   
+                                    <td><small>
+                                           
+                                                <%= (info.articulos.length>1) ? info.articulos.length+' Articulos':info.articulos[0].descripcion %>
+                                           
+                                               </small></td>
+                                            
+                                </tr>
+             
+                                <%})%>
+                        
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+            </div>
+   
+        </div>
+        <div class="row">
+
+                <div class="col">
+
+                                <div class="card border-dark mt-3 mb-5 pb-5">
+                                                <div class="card-header border-dark">
+                                                                <h4><i class="far fa-eye fa-2x"></i> Ultimas revisiones Stock con hoja de detalle</h4>            
+                                                </div>
+                                            <div class="card-body">
+                                                
+                                                <table class="table table-bordered table-sm table-hover ">
+                                                    <thead class="bg-info">
+                                                    <th style="width: 50px"><small>Encargado</small></th>
+                                                    <th style="width:60px"><small>Codigo caso </small></th>
+                                                    <th style="width: 50px"><small>Fecha</small></th>
+                                                    <th style="width: 50px"><small>Status</small></th>
+                                                    <th style="width:300px"><small>Detalle Status</small></th>
+                                                    <th style="width:180px" ><small>Cantidad de Articulos</small></th>
+                                                </thead>
+                                                <tbody>
+                                                 <% casostock.forEach(function(info){ %>
+                                                  <tr>
+                                                <td><small>
+                                                <%= info.encargado[0].usuario %></small></td>
+                                                <td><small>
+                                                <%= info.codigocaso %></small></td>
+                                                <td><small>
+                                                <%=info.fecha %></small></td>
+                                                <td><small><%= info.status.titulo %></small></td>
+                                                <td><small>
+                                                <%= info.status.descripcion %></small></td>
+                                                <td><small><%= (info.articulo.length>1)?info.articulo.length:info.articulo[0].descripcion %></small></td>
+                                                </tr>
+                                                <%})%>
+                                                    
+                                                </tbody>
+                                            </table>
+                                            </div>
+                                        </div>
+                </div>
+        </div>
+        
+
+</div>
+<%}else{%>
+     <h1 class="text-center"><i class="fas fa-ban"></i>Acceso denegado</h1>   
+<% }%>
+<% include partials/_footer %>

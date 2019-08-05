@@ -1,0 +1,203 @@
+<% include partials/_header %>
+
+<div class="container">
+    <% if (mensaje && mensaje.length>0) {%>
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+                <img src="img/comprobado.png" alt="..."><strong> <%= mensaje %></strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>   
+    <% } %>
+    <% if (mensajebad && mensajebad.length>0) {%>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <img src="img/error.png" alt="..."><strong> <%= mensajebad %></strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>   
+    <% } %> 
+    <div class="row">
+        <div class="col-12">
+
+        <form action="/asignaciones/add" method="POST" id="form1">
+        <div class="card border-dark">
+            <div class="card-header border-dark">
+                <div class="row">
+                    
+                    <div class="col-md-2">
+                            <div class="input-group">
+                                    <div class="input-group-prepend">
+                                            <span class="input-group-text form-control-sm" id="basic-addon1">Hoy:</span>
+                                            
+                                          </div>
+                                          <input type="text" id="fechahoy" name="fechahoy" class="form-control form-control-sm" readonly>
+        
+                            </div> 
+                    </div>
+                  <div class="col-md-8" >
+                           <h4 class="text-center"><i class="fas fa-hand-holding fa-2x"></i> Asignaciones de Caso</h4> 
+                    </div>
+                </div>
+        </div>
+            
+            <div class="card-body">
+                    
+                        <div class="row">
+
+                                <div class="col-md-2 my-2">
+                                        <label for="">Tecnico</label>
+                                        <input name="tecnico" id="tecnico" type="text" class="form-control"  placeholder="Responsable" value="" required>
+                                    </div>
+                                    <div class="col-md-2 my-2">
+                                        <label for="selectTienda" class="font-italic">Tienda</label>
+                                        <select class="custom-select" id="idtienda" name="desc_tienda" required>
+                                            <option value="">Seleccionar</option>
+                                            <option value="012">012-Mejia</option>
+                                            <option value="015">015-Machala</option>
+                                            <option value="014">014-Manta</option>
+                                            <option value="09">09-Porto Viejo</option>
+                                            <option value="08">08-Babahoyo</option>
+                                            <option value="06">06-Playas</option>
+                                            <option value="03">03-Loja</option>
+                                            <option value="011">011-Riobamba</option>
+                                            <option value="05">05-Duran</option>
+                                            <option value="010">010-Bahia de C</option>
+                                            <option value="016">016-Daule</option>
+                                            <option value="07">07-Peninsula</option>
+                                            <option value="01">01-Montañita</option>
+                                            <option value="00">00-Otra</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="col-md-2 my-2">
+                                        <label for="">Numero de Guia</label>
+                                        <input name="nguia" id="nguia" type="text" placeholder= "numero de guia" class="form-control" required >
+                                    </div>
+                            <div class="col-md-2 my-2">
+                                    <label for="">Tipo de Caso</label>
+                                    <input name="tipo_caso" id="tipo_caso" type="text" class="form-control" placeholder="tipo de caso" required>
+                                </div>
+                                <div class="col-md-3 my-2">
+                                        <label for="">Observacion</label>
+                                        <textarea name="observacion" class="form-control" id="" cols="30" rows="2" placeholder="observacion"></textarea>  
+                                    </div>
+                        </div>
+                                    <div class="row">
+                                        <div class="col-md-2 my-2">
+                                            <label for="">Numero de Caso</label>
+                                            <input name="numcaso" id="numcaso" type="number" min="0" placeholder= "n# caso" class="form-control" required>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label for="">Vendedor</label>
+                                            <input name="vendedor" id="vendedor" type="text" class="form-control" placeholder="Responsable" >  
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label for="">fecha ingreso a Computienda</label>
+                                            <input name="fechaingCT" id="fechaingCT" type="date" class="form-control" placeholder="fecha" required>  
+                                        </div>
+                                    </div>
+                        
+                <div class="row">
+                    <div class="col-md-2 offset-5">
+                            <button type="submit" id="guardar"  class="btn btn-outline-success btn-sm my-2 btn-block"><i class="far fa-save fa-3x"></i></button>
+
+                    </div>
+                </form>
+                </div>
+                <div class="row">
+       
+                        <div class="col-md-12">
+                                <h5 class="text-center">Asignaciones del dia de Hoy</h5>
+                                <table class="table table-bordered table-hover table-sm ">
+                                            
+                                        <thead class="thead-dark">
+                                            <th style="width:20px"><small>N#</small></th>
+                                            <th style="width:70px"><small>Tecnico</small></th>
+                                            <th style="width:70px"><small>N# Caso </small></th>
+                                            <th style="width:100px"><small>Tipo de Caso</small></th>
+                                            <th style="width:70px"><small>Tienda</small></th>
+                                            <th style="width:100px"><small>N# guia</small></th>
+                                            <th style="width:60px"><small>Ingreso CTienda</small></th>
+                                            <th style="width:80px"><small>Vendedor</small></th>
+                                            <th><small>Observacion</small></th>
+                                            <th style="width:60px"><small>Fecha Regisro</small></th>
+
+                                            
+                                            <th style="width:40px"><small>Operaciones</small></th>
+                                        </thead>
+                                        <tbody>
+                                                <% todos.forEach(function(sel,cont=0){ %>
+                                            <tr>
+                                                <td><small> <%= cont+=1 %> </small></td>
+                                                <td><small> <%= sel.tecnico %> </small></td>    
+                                                <td><small><%= sel.codigocaso %></small></td>
+                                                <td><small><%= sel.tipo_caso %></small></td>
+                                                <td><small><%= sel.tienda %></small></td>
+                                                <td><small><%= sel.guia_se %></small></td>
+                                                <td><small><%= sel.fechaingCT %></small></td>
+                                                <td><small><%= sel.vendedor %></small></td>
+                                                <td><small><%= sel.observacion %></small></td>
+                                                <td><small><%= sel.fecha_registro %></small></td>
+                                               
+                                                <td style="width:100px"><small><% if(usuario && usuario.correo==="admin1@compumicro.com.ec" || usuario.correo==="admin2@compumicro.com.ec" ||
+                                                usuario.correo==="memm44@gmail.com"){%>
+                                                        <a href="/asignaciones/delete/<%= sel._id %>" class="btn btn-danger btn-sm elimina"><i class="far fa-trash-alt"></i></a>
+                                                        <a href="/asignaciones/editar/<%= sel._id %>" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a> </small>  
+                                                        <%}%>     
+                                                </td>
+                                            </tr>
+                                            <%})%>  
+                                        <tbody>
+                                    </table>  
+                        </div>
+                   
+                        
+                        
+                    </div>   
+                
+                
+            </div>
+            <div class="row">
+                <div class="col">
+                <div class="row justify-content-center" >
+                    <a href="/asignaciones/tasignaciones/1" class="btn btn-link">TODAS LAS ASIGNACIONES</a>
+                </div>
+            </div>
+            </div>
+        </div>
+   
+
+
+<% include partials/_footer %>
+
+<script>
+$(document).ready(function () {
+    var fecha = new Date
+    var dia = fecha.getDate()
+    var mes = fecha.getMonth()+1
+    if (dia<=9){
+        dia= '0'+dia
+    }
+    if (mes<=9){
+        mes= '0'+mes
+    }
+    var anio = fecha.getFullYear()
+    var fechacorta= `${anio}-${mes}-${dia}` 
+     $('#fechahoy').val(fechacorta);
+     $('#form1').on('submit', function () {
+        window.location.reload(true)
+    });
+    $('.elimina').on('click', function () {
+           
+           var resp = confirm('Seguro que lo desea eliminar ? ya no podra restaurar este registro')
+           if (resp) {
+           return true;
+           }else{
+           return false;
+           }
+       
+   });
+});
+
+</script>

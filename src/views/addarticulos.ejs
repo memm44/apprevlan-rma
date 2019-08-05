@@ -1,0 +1,154 @@
+<% include partials/_header %>
+<div class="container">
+        <div class="row">
+            <!--formulario-->
+            
+            <div class="col-md-12">
+                <div class="card border-success">
+                    <div class="card-header text-center bg-success text-white">
+                        <h3 class="font-weight-light text-uppercase">Articulos Adicionales</h3>
+                     </div>
+                    <div class="card-body">
+                        <form action="/casos/add" method="POST" id="je"  >
+                            <div class="form-row">
+                                <div class="form-group col-md-2 my-2">
+                                <label for="tienda" class="font-italic" >Tienda</label>
+                                <input type="text" name="tienda" id="" placeholder="tienda" value="" class="form-control text-uppercase" disabled>
+                                </div>
+                                <div class="form-group col-md-2 my-2 ">
+                                    <label for="" class="font-italic">Numero de Caso</label>
+                                    <input type="text" name="ncaso" value="" placeholder="N#" class="form-control text-uppercase" disabled>
+                                </div>
+                                <div class="form-group col-md-2 my-2 ml-3">
+                                    
+                                            <label for="tipo_caso" class="font-italic">Tipo de Caso</label>
+                                            <input type="text" name="tipo_caso" value="" placeholder="tipo de caso" class="form-control text-uppercase" disabled>
+                                            </div>                    
+                                </div>
+
+
+                                <hr>
+                            <div class="form-row">
+                                <div class=" form-group col-md-2 my-2" >
+                                    <label for="" class="font-italic ">Num Factura</label>
+                                    <input type="text" name="nfactura" value="" placeholder="N°Fact" class="form-control form-control-sm " >
+                                </div>
+                                <div class="form-group col-md-2 my-2">
+                                    <label for="" class="font-italic">Codigo </label>                                      
+                                    <input type="text" name="cod_art" value="" placeholder="Cod" class="form-control form-control-sm text-uppercase" >
+                                </div>
+                                <div class="form-group col-md-3 my-2">
+                                    <label for="" class="font-italic">Descripcion </label>                                      
+                                    <input type="text" name="desc_art" value="" placeholder="Descripcion" class="form-control form-control-sm text-uppercase" >
+                                </div>
+                                
+                                <div class="form-group col-md-3 my-2">
+                                    <label for="" class="font-italic">Reporte</label>
+                                    <textarea type="text" name="desc_reporte" cols="35" placeholder="Ingrese Detalles del Reporte" class="form-control form-control-sm text-uppercase"  ></textarea>
+                                </div>
+                                <div class="form-group col-md-2 my-2">
+                                    <label for="" class="font-italic">Serie</label>
+                                    <input type="text" name="nserie" value="" placeholder="Ingrese Serial" class="form-control form-control-sm text-uppercase" >
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <input type="submit" value="Agregar" placeholder="N#" class="btn btn-primary btn-sm" >
+                                    </div>
+                                </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h4>Agregados</h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <!--AQUI MOSTRARA LOS ELEMENTOS AGREGADOS-->
+                                <div class="col-md-12">  
+                                    <h2>Construyendo..</h2>
+                                </div>
+                            </div>
+                                <div class="form-row">
+                                        
+                                </div>
+                                        <div class="form-row "> 
+                                            <div class="form-grup col-md-2">
+                                                <div class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input" id="ch1" >
+                                                <label class="custom-control-label mr-2" for="ch1">Tramite G </label>
+                                                </div>  
+                                            </div>                                 
+                                            <div class="form-group ch1 col-md-3 d-none">
+                                                <label for="" class="font-italic sr-only">Tramite </label>
+                                                <input type="text" name="fact_tramite_desc" value="" placeholder="Codigo/Descripcion" class="form-control">
+                                            </div>
+                                            <div class="form-group ch1 col-md-1 d-none">
+                                                <label for="" class="font-italic sr-only">Valor</label>
+                                                <input type="text" name="fact_tramite_val" value="0" placeholder="$$$" class="form-control">
+                                            </div>
+                                            <div class="form-grup col-md-2">
+                                                <div class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input" id="ch2" >
+                                                <label class="custom-control-label mr-2" for="ch2">Revision </label>
+                                                </div>
+                                            </div>      
+                                            <div class="form-group ch2 col-md-3 mb-2 d-none">
+                                                <label for="" class="font-italic sr-only">Fact Revisión</label>
+                                                <input type="text" name="fact_rev_desc" value="" placeholder="Codigo/Descripcion" class="form-control">
+                                            </div>
+                                            <div class="form-group ch2 col-md-1 mb-2 d-none">
+                                                <label for="" class="font-italic sr-only">Valor</label>
+                                                <input type="text" name="fact_rev_val" value="0" placeholder="$$$" class="form-control">
+                                            </div>
+                                            
+                                            
+                                        </div>
+                                            <div class="form-row">  
+                                                <div class="form-group col-md-2">
+                                                    <div class="custom-control custom-checkbox mb-3">
+                                                    <input type="checkbox" class="custom-control-input" id="ch3" >
+                                                    <label class="custom-control-label" for="ch3">S.Tecnico </label>
+                                                    </div>  
+                                                </div>
+                                                 <div class="form-group ch3  col-md-3 d-none">
+                                                <label for="" class="font-italic sr-only">Fact Serv. Técnico</label>
+                                                <input type="text" name="fact_st_desc" value="" placeholder="Codigo/Descripcion" class="form-control">
+                                            </div>
+                                            <div class="form-group ch3 col-md-1 d-none">
+                                                <label for="" class="font-italic sr-only">Valor</label>
+                                                <input type="text" name="fact_st_val" value="0" placeholder="$$$" class="form-control">
+                                            </div>
+                                            <div class="form-group col-md-2 ">
+                                                <div class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input" id="ch4" >
+                                                <label class="custom-control-label" for="ch4">Otra Fact </label>
+                                                </div>  
+                                            </div>
+                                            <div class="form-group col-md-3 ch4 d-none">
+                                                <label for="" class="font-italic sr-only">Fact Otros</label>
+                                                <input type="text" name="fact_otros_desc" value="" placeholder="Codigo/Descripcion" class="form-control">
+                                            </div>
+                                            <div class="form-group col-md-1 ch4 d-none">
+                                                <label for="" class="font-italic sr-only">Valor</label>
+                                                <input type="text" name="fact_otros_val" value="0" placeholder="$$$" class="form-control">
+                                            </div>  
+
+                                            </div>
+
+                                            <div class="form-row">   
+
+                                                <div class="form-group">
+                                                    <h3>prueba</h3>
+                                                </div>
+                                            </div>
+                                                
+                                   
+                        </form> 
+                    </div>
+                </div>
+            </div> 
+            </div>
+
+    </div>
+    
+    <% include partials/_footer %>

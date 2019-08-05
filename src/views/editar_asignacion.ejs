@@ -1,0 +1,79 @@
+<% include partials/_header %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-3">
+            <% if (asgselected) { %>
+            <div class="card">
+                <div class="card-header">
+                    Editando Asignación
+                </div>
+                <div class="card-body">
+                    <div class="col-md-12">
+    
+                        <form action="/asignaciones/editar/<%=asgselected._id%>" method="POST">
+    
+                            <div class="row">
+    
+    
+                                <label for="">Tecnico</label>
+                                <input name="tecnico" id="tecnico" type="text" class="form-control"
+                                    placeholder="Responsable" value="<%= asgselected.tecnico %>" required>
+    
+                                <label for="">Numero de caso</label>
+                                <input name="numcaso" id="numcaso" value="<%= asgselected.numcaso %>" type="number" min="0" placeholder="numero de caso " class="form-control" required>
+    
+                                <label for="">Numero de Guia</label>
+                                <input name="nguia" id="nguia" type="text" value="<%= asgselected.guia_se %>" placeholder="numero de guia" class="form-control"
+                                    required>
+    
+    
+    
+                                <label for="">Tipo de Caso</label>
+                                <input name="tipo_caso" id="tipo_caso" type="text" class="form-control" value="<%= asgselected.tipo_caso %>"
+                                    placeholder="tipo de caso"  required>
+    
+    
+                                <label for="">Observacion</label>
+                                <textarea name="observacion" class="form-control" id="" cols="30" rows="2" placeholder="observacion"> <%= asgselected.observacion %></textarea>
+    
+    
+    
+                                <label for="">Tienda</label>
+                                <input name="Tienda" id="tienda" type="text" class="form-control" placeholder="tienda" value="<%= asgselected.tienda %>"
+                                    required>
+    
+    
+                                <label for="">Vendedor</label>
+                                <input name="vendedor" id="vendedor" type="text" class="form-control" placeholder="Responsable" value="<%= asgselected.vendedor %>">
+    
+    
+                                <label for="">fecha ingreso a Computienda</label>
+                                <input name="fechaingCT" id="fechaingCT" type="date" class="form-control" value="<%= asgselected.fechaingCT %>"
+                                    placeholder="fecha" required>
+    
+                            </div>
+    
+                            <div class="row">
+                                <div class="col">
+                                    <input type="submit" id="guardar" value="Registrar" class="btn btn-info btn-sm my-2">
+    
+                                </div>
+                        </form>
+    
+                    </div>
+    
+                </div>
+    
+                <% } else { %>
+                <h1>no hay ningun caso seleccionado</h1>
+    
+                <%} %>
+            </div>
+        </div>
+    
+    </div>
+   
+</div>
+
+
+<% include partials/_footer %>

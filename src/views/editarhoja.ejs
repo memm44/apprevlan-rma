@@ -1,0 +1,39 @@
+<% include partials/_header %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-3">
+            <% if (hojaselected) { %>
+          <div class="card">
+              <div class="card-header">
+                  <div class="card-body">
+                      
+                        <form action="/hojastock/editarhoja/<%= hojaselected._id %>" method="post">
+                            <label for="">Codigo de Caso</label>
+                            <input type="text" name="codigocaso" class="form-control" placeholder="codigo de caso" value="<%= hojaselected.codigocaso %>">
+                            <label for="">Status</label>
+                            <input type="text" name="status" class="form-control" placeholder="status" value="<%= hojaselected.status.titulo %>">
+                            <label for="">Descripcion</label>
+                            <textarea name="descripcion" id="" cols="10" rows="1" class="form-control"><%= hojaselected.status.descripcion %></textarea>
+                            <label for="">Transferencias</label>
+                            <input type="text" name="transferencias" class="form-control" placeholder="ingrese las transferencias ej: mejia>stecnico:1522" value="<%= hojaselected.transferencias %>"> 
+                            <div class="text-center" >
+                                <button type="submit" class="btn btn-outline-success my-2 btn-block"><i class="far fa-check-circle fa-2x"></i></button>
+                            </div>
+                            </form>
+                            
+                  </div>
+              </div>
+          </div>
+
+           
+        <% } else { %>
+                <h1>no hay ninguna hoja seleccionada</h1>
+
+       <%} %>
+        </div>
+    </div>
+   
+            </div>
+
+</div>
+<% include partials/_footer %>

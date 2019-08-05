@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth;">
+
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>E.E Compumicro</title>
+        <!--estilizando con bootstrap -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="fonts/all.min.css">
+        <link rel="stylesheet" href="fonts/miestilo.css">
+</head>
+
+<div class="container" id="principal">
+    <div class="row" id="repo">
+        <div class="col-md-12 m-1" >
+            <div class="card border-info">
+                <div class="card-header bg-light border-info">
+                    <div class="row">
+                        <div class="col-md-3">
+                                <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                        <button type="button" class="btn btn-outline-info" id="imprime"><i class="far fa-file fa-2x"></i></button>
+                                        <button type="button" class="btn btn-outline-info" id="agrega" >+</button>
+                                      </div>
+                        </div>
+                        <div class="col-md-6">
+                                <h2 class="text-center"> Reporte Técnico Compumicro S.A</h2>
+                        </div>
+                    </div>
+                   
+                       
+                </div>
+
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="col-md-2">
+                                <label for="">Numero de Caso</label>
+                                <input type="text" class="form-control form-control-sm border-info" value="<%= repselec.ncaso.numcaso %>" readonly>
+                        </div>
+                        <div class="col-md-2">
+                                <label for="">Tienda</label>
+                                <input type="text" class="form-control form-control-sm border-info" value="<%= repselec.tienda.nombre %>" readonly>
+                        </div>
+                        <div class="col-md-2">
+                                <label for="">Tipo de Caso</label>
+                                <input type="text" class="form-control form-control-sm border-info" value="<%= repselec.tipo_caso %>" readonly>
+                        </div>
+                        <div class="col-md-2">
+                                
+                        </div>
+                        <div class="col-md-2">
+                            <label for="">Cliente</label>
+                            <input type="text" class="form-control form-control-sm border-info" value="<%= repselec.cliente.nombre+''+ repselec.cliente.apellido%>" readonly>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="">Telefono</label>
+                            <input type="text" class="form-control form-control-sm border-info" value="<%= repselec.cliente.telefonos %>" readonly>
+                            <br>
+                         </div>
+                    
+                   
+                    <table id= "tb" class="table table-sm">
+                    <thead class="thead-dark">
+                        <tr>
+                        <th scope="col" style="width:80px"><small><strong>#</strong> </small></th>
+                        <th scope="col" style="width:150px"><small><strong>Cod</strong> </small></th>
+                        <th scope="col" style="width:300px"><small><Strong>Desc</Strong></small></th>
+                        <th scope="col" style="width:170px"><small><Strong>Nfact</Strong></small></th>
+                        <th scope="col" style="width:100px"><small><strong>Nserie</strong> </small></th>
+                        <th scope="col"><small><strong>Reporte</strong> </small></th>
+                        
+
+
+                        </tr>
+                        <tr>
+
+                            
+                        </tr>
+
+                        
+                    </thead>
+                    <% repselec.articulos.forEach(function(art,cont=0) {%>
+                        <tr style="background: #d7dbdd ">
+                            <td ><small><%= cont+1 %> </small></td>
+                            <td ><small><%= art.codigo %> </small></td>
+                            <td ><small><%= art.descripcion %></small></td>
+                            <td ><small><%= art.nserie %></small></td>
+                            <td ><small><%= art.nfact %></small></td>
+                            <td><small><%= art.reporte %></small></td>
+                            
+                        </tr>
+                        <tr>
+                        <th scope="col" > <small><strong>Fact CT</strong> </small></th>
+                        <th scope="col"><small><strong>Fact CM</strong> </small></th>
+                        <th scope="col"><small><strong>Transferencias</strong> </small></th>
+                        <th scope="col"><small><strong>E Final Art/Bodega </strong> </small></th>
+                        </tr>
+                        <tr>
+                            <td><small><%= art.facturacionCTienda.codigo+'= '+ art.facturacionCTienda.valor%></small></td>
+                            <td><small><%= art.facturacionCmejia.codigo+'= '+ art.facturacionCmejia.valor %></small></td>
+                            <td><small><%= art.transferencias %></small></td>
+                            <td><small><%= art.estado_final %></small></td>
+                        </tr>
+                    <% });%>
+                    <tbody> 
+                    </table>
+                    </div>
+                    <div class="form-row mb-2 ">
+                            <div class="col-md-12   text-center">
+                                <label for="" > <strong> REPORTE FINAL</strong></label>
+                                <textarea name="repfinal" id="" cols="160" rows="2" class="border-success form-control form-control-sm mb-2" readonly><%= repselec.rep_final %> </textarea>
+                            </div>  
+                           </div>
+                   </div>
+                   <div class="card-footer text-muted mt-2 m-0 p-0 border-info">
+                   <div class="row pt-5 ml-2">
+                       <div class="col-md-4 ">
+                            <p>Firma de Responsable ___________________________ </p>
+                       </div>
+                       <div class="col-md-4">
+                            <p>Firma de Cliente __________________________</p>
+                       </div>
+                       <div class="col-md-4">
+                        <p>Fecha de Entrega __________________________</p>
+                   </div>
+                   </div>
+                      </div>
+                   
+            </div >
+            
+        </div>
+    </div>
+    <hr>
+    <div class="row" id="adicional">
+            <div class="col-md-12 m-1" >
+            
+            
+            </div>
+
+    </div>
+</div>
+<script src="js/jquery-3.3.1.slim.min.js"></script>
+<script src="js/custom.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/all.min.js"></script>
+<script src="js/popper.min.js"></script>
+
+<script>
+        $(document).ready(function () {
+              $('#agrega').on('click', function () {
+                $('#principal').clone().appendTo('#adicional').end()
+                return false
+              });
+                $('#imprime').on('click', function () {
+                    window.print()
+                    return false
+                });
+                
+        });
+
+       
+
+
+
+
+
+  
+</script>

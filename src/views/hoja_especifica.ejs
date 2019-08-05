@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth;">
+
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>E.E Compumicro</title>
+        <!--estilizando con bootstrap -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="fonts/all.min.css">
+        <link rel="stylesheet" href="fonts/miestilo.css">
+</head>
+
+<div class="container-fluid mx-2">
+    <div class="row">
+        
+        <div class="col-md-2"><p></p></div>
+        
+        <div class="col-md-4 "><h5 class="text-center"><bold><u> Hoja de Stock id: <%= articulos._id %> </u></bold> </h5></div>
+    </div>
+    <div class="row">
+            <div class="col-md-3"><p>Transferencias: <%= articulos.transferencias %></p></div>
+            <div class="col-md-3 offset-5"><p>Revisado _____________________</p></div>
+        </div>
+       
+    <div class="row">
+            <div class="col-md-12">
+        <div class="card ">
+            <div class="card-body m-1 p-1">
+                   
+                    <table class="table table-bordered table-sm ">
+                                            
+                            <thead class="thead-dark">
+                                <th style="width:40px"><small>N#</small></th>
+                                <th style="width:80px"><small>Codigo de Art</small></th>
+                                <th><small>Descripcion </small></th>
+                                <th style="width:40px"><small>Cantidad </small></th>
+                                <th><small>Observacion</small></th>
+                                <th style="width:60px"><small>Completo</small></th>
+                                <th style="width:150px"><small>Bodega</small></th>
+                       
+                              
+                            </thead>
+                            <tbody>
+                                    <tbody>
+                                        <% if(articulos.articulo && articulos.articulo.length>0){%>
+                                        <% articulos.articulo.forEach(function(sel,cont=0){ %>
+                                    <tr>
+                                        <td class="m-0 p-0"><small> <%= cont+=1 %> </small></td>
+                                        <td class="m-0 p-0"><small> <%= sel.codigo %> </small></td>
+                                        <td class="m-0 p-0"><small> <%= sel.descripcion %> </small></td>
+                                        <td class="m-0 p-0"><small> <%= sel.cantidad_items %> </small></td>
+                                        <td class="m-0 p-0"><small> <%= sel.observacion %> </small></td>
+                                        <td class="m-0 p-0"><small><%= sel.completo %></small></td>
+                                        <td class="m-0 p-0"><small><%= sel.bodega_final %></small></td>
+                                   
+                                        
+                                        
+                                    </tr>
+                                    <%})%>  
+                                    <%} else {%>
+                                        <h3>no hay articulos</h3>
+                                        <%}%>
+                                <tbody> 
+                        </table>  
+            
+            </div>
+        </div>
+    </div>
+    </div>
+
+</div>
+<script src="js/jquery-3.3.1.slim.min.js"></script>
+<script src="js/custom.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/popper.min.js"></script>

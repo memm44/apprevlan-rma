@@ -1,0 +1,301 @@
+<% include partials/_header %>
+
+<div class="container">
+        <% if (mensaje && mensaje.length>0) {%>
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                    <img src="img/comprobado.png" alt="..."><strong> <%= mensaje %></strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>   
+        <% } %>
+        <% if (mensajebad && mensajebad.length>0) {%>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <img src="img/error.png" alt="..."><strong> <%= mensajebad %></strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>   
+        <% } %> 
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="/editar/<%=caso._id %>" method="POST" id="formcaso">
+                            <div class="form-row">
+                                <div class="form-group col-md-2 my-2">
+                                    <label for="selectTienda" class="font-italic">Tienda</label>
+                                    <select class="custom-select" id="idtienda" name="desc_tienda" required>
+                                            <option selected><%= caso.tienda.codigo%></option>
+                                        <option value="012">012-Mejia</option>
+                                        <option value="015">015-Machala</option>
+                                        <option value="014">014-Manta</option>
+                                        <option value="09">09-Porto Viejo</option>
+                                        <option value="08">08-Babahoyo</option>
+                                        <option value="06">06-Playas</option>
+                                        <option value="03">03-Loja</option>
+                                        <option value="011">011-Riobamba</option>
+                                        <option value="05">05-Duran</option>
+                                        <option value="010">010-Bahia de C</option>
+                                        <option value="016">016-Daule</option>
+                                        <option value="07">07-Peninsula</option>
+                                        <option value="01">01-Montañita</option>
+                                        <option value="00">00-Otra</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-2 my-2 ">
+                                    <label for="" class="font-italic">Numero de Caso</label>
+                                    <input type="number"min="0" id="idcaso" name="ncaso" value="<%= caso.ncaso.numcaso %>" placeholder="N#" class="form-control "
+                                        required>
+                                </div>
+                                <div class="form-group col-md-2 my-2 ml-3">
+                                <label for="selectTiposerv" class="font-italic">Tipo de Caso</label>
+                                    <div class="custom-control custom-radio" aria-required="true">
+                                        <input type="radio" class="custom-control-input" id="r1" value="garantia" name="tipo_caso"  <%= (caso.tipo_caso==='garantia')?'checked':'' %>  >
+                                        <label class="custom-control-label" for="r1">Garantia</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="r2" value="soporte tecnico" name="tipo_caso"  <%= (caso.tipo_caso==='soporte tecnico')?'checked':'' %>>
+                                        <label class="custom-control-label" for="r2">S Tecnico</label>
+        
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="r3" value="stock" name="tipo_caso"  <%= (caso.tipo_caso==='stock')?'checked':'' %>>
+                                        <label class="custom-control-label" for="r3">Stock</label>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-3 my-2 ">
+                                        <label for="" class="font-italic">Fecha de Ingreso al Sistema</label>
+                                        <input type="text" id="fechaingcm" name="fechaingcm" value="<%= caso.fechaIng %>" placeholder="fecha" class="form-control "
+                                            readonly>
+                                    </div>    
+                                    <div class="form-group col-md-2 my-2 ">
+                                            <label for="" class="font-italic">Ingreso Computienda</label>
+                                            <input type="text" id="fechaingct" name="fechaingct" value="<%= caso.fechaIngCT %>" placeholder="N#" class="form-control ">
+                                        </div>    
+
+                            </div>
+                         
+                            <hr>
+                            <div class="form-row">
+                                <div class="form-group col-md-2 my-2 ml-3">
+                                        <label for="" class="font-italic ">Nombre Cliente</label>
+                                        <input type="text" id="vnfac" name="nombcliente" value="<%= caso.cliente.nombre %>" placeholder="Ingrese Nombre " class="form-control form-control-sm ">
+                                    
+                                    </div>
+                                    <div class="form-group col-md-2 my-2 ml-3">
+                                        <label for="" class="font-italic ">Apellido Cliente</label>
+                                        <input type="text" id="vnfac" name="apcliente" value="<%= caso.cliente.apellido %>" placeholder="Ingrese Apellido" class="form-control form-control-sm ">
+                                    
+                                    </div>
+                                    <div class="form-group col-md-4 my-2 ml-3">
+                                        <label for="" class="font-italic ">Direccion</label>
+                                      <textarea name="dircliente" class="form-control" id="" cols="30" rows="2"><%= caso.cliente.direccion %></textarea>
+                                    
+                                    </div>
+                                    <div class="form-group col-md-3 my-2 ml-3">
+                                        <label for="" class="font-italic ">Telefonos</label>
+                                        <input type="text" id="vnfac" name="telfcliente" value="<%= caso.cliente.telefonos %>" placeholder="Telefonos del Cliente" class="form-control form-control-sm ">
+                                    
+                                    </div>
+                            </div>
+                            
+                      
+                             <!--boton-------------------------------------------------------  -->
+                            <div class="form-row">
+                                    <div class="form-group col-md-4 my-2 ">
+                                        <label for="" class="font-italic">Reporte Final</label>
+                                        <textarea name="repfinal" class="form-control" id="idcaso" cols="30" rows="4" placeholder="ingrese reporte final"></textarea>
+                                    </div>
+                                    
+                                    <div class="form-group col-md-4 my-2 ">
+                                        <label for="" class="font-italic">Guia Servientrega/Encargado de envio</label>
+                                        <input type="text" id="guiase" name="guiase" value="<%= caso.envio.guia %>" placeholder="#Guia/Encargado"
+                                            class="form-control " >
+                                    </div>
+                                    <div class="form-group col-md-2 my-2 ">
+                                        <label for="" class="font-italic">fecha de envio</label>
+                                        <input type="date" id="fechaenv" name="fechaenv" value="<%= caso.envio.fechaEnv %>" placeholder="#Guia/Encargado"
+                                            class="form-control " >
+                                    </div>
+                                    
+                                
+                            </div>
+                            <div class="form-row">
+                                    <div class="col-md-2 my-2">
+                                        <label for="" class="font-italic">Status Actual</label>
+                                        <input type="text" id="statustitulo" class="form-control" name="statustitulo" placeholder="status" value="<%= caso.status.titulo %>">
+                                    </div>
+                                
+                                    <div class="col-md-5 my-2">
+                                        <label for="" class="font-italic">Descripcion status</label>
+                                        <textarea name="statusdescripcion" id="" cols="30" rows="2" class="form-control"><%= caso.status.descripcion %></textarea>
+                                    </div>
+                                    
+                            </div>
+                            <div form-row>
+                                <div class="form-group col-md-2 offset-5">
+                                    <button type="submit" class="btn btn-outline-success btn-sm btn-block my-1" ><i class="fas fa-check-circle fa-2x"></i></button>
+                                </div>
+                            </div>
+                            </div>
+                        </form> 
+                    </div>
+                </div>
+            </div>   
+            
+             
+            
+            
+           
+            <section id="cuadroart">
+                 <div class="row">
+                     
+                    <div id="bloqueart" class="col-md-12">
+                            
+
+                    </div>
+                   
+                    
+                    <div class="col-md-12 my-4">
+                            <div class="row">
+                                <div class="col-md-2 offset-5 my-2">
+                                        <a href="#cuadroart" id="nuevoart" class="btn btn-info btn-sm btn-block "><i class="fas fa-cart-plus fa-3x"></i></a>
+                                </div>
+                                
+
+                            </div>
+                            
+                            <h3 class="text-center pt-2">Cuadro de Articulos </h3><br>
+                            <table class="table table-bordered table-hover table-sm ">
+                            
+                            <thead class="thead-dark">
+                                <th style="width:20px"><small>N#</small></th>
+                                <th style="width:60px"><small>Codigo</small></th>
+                                <th style="width:100px"><small>Descripcion</small></th>
+                                <th style="width:120px"><small>Numero serie</small></th>
+                                <th style="width:80px"><small>N# fact</small></th>
+                                <th style="width:350px"><small>Reporte</small></th>
+                                <th style="width:40px"><small>Operaciones</small></th>
+                            </thead>
+                            <tbody>
+                                <% caso.articulos.forEach(function(art,cont=0){ %>
+                                    <% cont++ %>
+                                <tr>
+                                    <td><small> <%= cont++ %> </small></td>
+                                    <td><small> <%= art.codigo %> </small></td>
+                                    <td><small><%= art.descripcion %></small></td>
+                                    <td><small><%=art.nserie %></small></td>
+                                    <td><small><%= art.nfact %></small></td>
+                                    <td><small><%= art.reporte %></small></td>
+                                    <td><small>
+                                            <a href="/articulos/removeart/<%=caso._id %>/<%= art._id %>" class="btn btn-danger btn-sm elimina"><i class="far fa-trash-alt"></i></a>
+                                            <a href="/articulos/editararticulos/<%=caso._id %>/<%= art._id %>" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
+                                           
+                                    </td>
+                                </tr>
+                                <%});%>  
+                            <tbody>
+                        </table>  
+                    </div>  
+                </div>  
+            </section>     
+        </div>
+    <a href=""></a>
+<% include partials/_footer %>
+<script>
+    $(document).ready(function () {
+        var nuevocontenido= ` 
+            
+            <form action="/articulos/addart/<%= caso._id%>" class="bg-secondary mb-4" method="post">
+                <h3 class="text-right bg-dark text-white">Nuevo articulo!<button type="button" id="borracont" class="btn btn-danger btn-sm ml-5 my-1 mx-1">X</button></h3>
+        <div class="form-row ml-2">
+                <div class=" form-group col-md-1 my-2" id="nfact">
+                        <label for="" class="font-italic ">Nfact</label>
+                        <input type="number" min="0" id="nfac" name="adcnfactura" value="" placeholder="N°Fact" class="form-control form-control-sm ">
+                    </div>
+                    <div class="form-group col-md-1 my-2">
+                        <label for="" class="font-italic">Codigo </label>
+                        <input type="text" name="adccod_art" value="" placeholder="Cod" class="form-control form-control-sm  "
+                            required>
+                    </div>
+                    <div class="form-group col-md-3 my-2">
+                        <label for="" class="font-italic">Descripcion </label>
+                        <input type="text" name="adcdesc_art" value="" placeholder="Descripcion" class="form-control form-control-sm "
+                            required>
+                    </div>
+                    <div class="form-group col-md-3 my-2">
+                        <label for="" class="font-italic">Reporte</label>
+                        <textarea type="text" name="adcdesc_reporte" cols="35" placeholder="Ingrese Detalles del Reporte"
+                            class="form-control form-control-sm " required></textarea>
+                    </div>
+                    <div class="form-group col-md-2 my-2">
+                        <label for="" class="font-italic">Serie</label>
+                        <input type="text" name="adcnserie" value="" placeholder="Ingrese Serial" class="form-control form-control-sm "
+                            required>
+                    </div>
+                    <div class="form-group col-md-2 my-2 mt-4 pt-3">
+                        
+                    
+                    
+                    </div>
+            </div>
+            <div class="form-row ml-2">
+                            <div class="form-group form-group  col-md-2 my-2 mt-2 pt-3">
+                             <label for="" class="font-italic">Desc Fact CTienda</label>
+                             <input type="text" name="adcdfactct" class="form-control" placeholder="Descripcion ">
+                             </div>
+                            <div class="form-group  col-md-1 my-2 mt-2 pt-3">
+                                    <label for="" class="font-italic">Valor </label>
+                                <input type="number" min="0" name="adcvalct" class="form-control" placeholder="">
+                            </div>
+                            <div class="form-group form-group  col-md-2 my-2 mt-2 pt-3">
+                             <label for="" class="font-italic">Desc Fact CMicro</label>
+                             <input type="text" name="adcdfactcm" class="form-control" placeholder="Descripcion">
+                             </div>
+                            <div class="form-group  col-md-1 my-2 mt-2 pt-3">
+                                    <label for="" class="font-italic">Valor</label>
+                                <input type="number" min="0" name="adcvalcm" class="form-control" placeholder="">
+                            </div>
+                            
+                            
+                            </div>
+                        <div class="form-row ml-2"> 
+                        <div class="col-md-6">
+                                
+                                <label for="">Transferencias</label>
+                                <input type="text" name="adcdtransf" class="form-control my-2"  placeholder="descripcion transferencia">
+                               
+                                </div>
+                                <div class="col-md-2 offset-2">
+                                <button type="submit" class="btn btn-warning btn-sm my-2 btn-block mt-4 guarda"><i class="far fa-check-circle fa-3x"></i></button>
+                               
+                                </div>
+                                </div>      
+                        </form>
+                            
+            `
+        $('#nuevoart').on('click', function () {
+            $(this).hide(1000);
+            
+            $("#bloqueart").append(nuevocontenido)
+
+            $('#borracont').on('click', function () {
+            $("#bloqueart").empty()
+            $('#nuevoart').show(1500)
+            
+        })
+    
+        })
+        $('.elimina').on('click', function () {
+           
+           var resp = confirm('seguro que lo desea eliminar ? ya no podra restaurar este registro')
+           if (resp) {
+           return true;
+           }else{
+           return false;
+           }
+        })
+    });
+    </script>

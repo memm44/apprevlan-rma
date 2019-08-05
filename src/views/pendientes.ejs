@@ -1,0 +1,104 @@
+<% include partials/_header %>
+
+<div class="container d-flex justify-content-center">
+   
+    
+        <div class="row">
+                <div class="col-md-12">
+                <div class="card border-dark pb-5">
+                        <div class="card-header border-dark">
+                                        <h4><i class="fas fa-book-reader fa-2x"></i> Ultimas revisiones</h4>            
+                        </div>
+                    <div class="card-body">
+                        
+                        <table class="table table-bordered table-sm table-hover ">
+                            <thead class="bg-info">
+                            <th><small>Encargado</small></th>
+                            <th style="width:60px"><small>Caso</small></th>
+                            <th><small>Fecha</small></th>
+                            <th><small>Status</small></th>
+                            <th><small>tienda</small></th>
+                            <th style="width:300px"><small>Detalle Status</small></th>
+                            <th style="width:120px"><small>Tipo de Caso</small></th>
+                            <th style="width:180px" ><small>Num Articulos</small></th>
+                        </thead>
+                        <tbody>
+                          
+                            <% caso.forEach(function(info){ %>
+                                
+                                <tr>
+                                    <td><small>
+                                            <%= info.encargado[0].usuario %></small></td>
+                                    <td><small>
+                                            <%= info.ncaso.codigocaso %></small></td>
+                                    <td><small>
+                                            <%=info.fechaIng %></small></td>
+                                    <td><small>
+                                           <%= info.status.titulo %></small></td>
+                                   <td><small>
+                                            <%= info.tienda.nombre %></small></td>
+                                    <td><small>
+                                         <%= info.status.descripcion %></small></td>
+                                    <td><small>
+                                            <%= info.tipo_caso%></small></td>
+                                   
+                                    <td><small><%= (info.articulos.length>1) ? info.articulos.length+' Articulos':info.articulos[0].descripcion %></small></td>
+                                            
+                                </tr>
+             
+                                <%})%>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+                <div class="card border-dark mt-3 mb-5 pb-5">
+                        <div class="card-header border-dark">
+                                        <h4><i class="fas fa-book-reader fa-2x"></i> Ultimas revisiones Stock con hoja de detalle</h4>            
+                        </div>
+                    <div class="card-body">
+                        
+                        <table class="table table-bordered table-sm table-hover ">
+                            <thead class="bg-info">
+                            <th><small>Encargado</small></th>
+                            <th><small>Codigo caso </small></th>
+                            <th><small>Fecha</small></th>
+                            <th><small>Status</small></th>
+                            <th style="width:300px"><small>Detalle Status</small></th>
+                            <th style="width:180px" ><small>Cantidad de Articulos</small></th>
+                        </thead>
+                        <tbody>
+                          
+                            <% casostock.forEach(function(info){ %>
+                                
+                                <tr>
+                                    <td><small>
+                                            <%= info.encargado[0].usuario %></small></td>
+                                    <td><small>
+                                            <%= info.codigocaso %></small></td>
+                                    <td><small>
+                                           <%=info.fecha %></small></td>
+                                    <td><small>
+                                            <%= info.status.titulo %></small></td>
+                                    <td><small>
+                                            <%= info.status.descripcion %></small></td>
+                                    <td><small>
+                                            <%= info.articulo.length %></small></td>
+                                   
+                                    <td><small>
+                                            
+                                               </small></td>
+                                            
+                                </tr>
+             
+                                <%})%>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+            </div>
+   
+        </div>
+
+</div>
+
+<% include partials/_footer %>

@@ -1,0 +1,58 @@
+<% include partials/_header %>
+<% if(mensaje && mensaje.length>0){%>
+    <div class="alert alert-info">
+        <%= mensaje %>
+    </div>
+    <% }%>
+<div class="container-fluid mx-2">
+    
+    <div class="row">
+       
+        <div class="col-md-12">
+
+                <table class="table table-bordered table-hover table-sm ">
+                            
+                        <thead class="thead-dark">
+                            <th><small>n#</small></th>
+                            <th style="width:100px"><small>Tecnico</small></th>
+                            <th style="width:100px"><small>Codigo de caso </small></th>
+                            <th style="width:100px"><small>Tipo de Caso</small></th>
+                            <th><small>Tienda</small></th>
+                            <th><small>fecha ing tienda</small></th>
+                            <th><small>Vendedor</small></th>
+                            <th><small>Observacion</small></th>
+                            <th style="width:180px"><small>Fecha Reg</small></th>
+
+                            
+                            <th><small>operaciones BD</small></th>
+                        </thead>
+                        <tbody>
+                                <% resultado.forEach(function(sel,cont=0){ %>
+                            <tr>
+                                <td><small> <%= cont+=1 %> </small></td>
+                                <td><small> <%= sel.tecnico %> </small></td>    
+                                <td><small><%= sel.codigo_caso %></small></td>
+                                <td><small><%= sel.tipo_caso %></small></td>
+                                <td><small><%= sel.tienda %></small></td>
+                                <td><small><%= sel.fechaingCT %></small></td>
+                                <td><small><%= sel.vendedor %></small></td>
+                                <td><small><%= sel.observacion %></small></td>
+                                <td><small><%= sel.fecha_registro %></small></td>
+                               
+                                <td style="width:100px"><small>
+                                        <a href="/asignaciones/delete/<%= sel._id %>" class="btn btn-danger btn-sm elimina">X</a>
+                                        <a href="/asignaciones/editar/<%= sel._id %>" class="btn btn-info btn-sm">A</a>        
+                                </td>
+                            </tr>
+                            <%})%>  
+                        <tbody>
+                    </table>  
+        </div>
+   
+        
+        
+    </div> 
+
+</div>
+
+<% include partials/_footer %>

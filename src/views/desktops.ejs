@@ -1,0 +1,217 @@
+<% include partials/_header %>
+
+<div class="container">
+    <% if (mensaje && mensaje.length>0) {%>
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+                <img src="img/comprobado.png" alt="..."><strong> <%= mensaje %></strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>   
+    <% } %>
+    <% if (mensajebad && mensajebad.length>0) {%>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <img src="img/error.png" alt="..."><strong> <%= mensajebad %></strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>   
+    <% } %>
+    <div class="row">
+     <div class="col-md-12">
+        <div class="card border-dark">
+                
+                <div class="card-header border-dark">                  
+                    <h4 class="text-center"> <i class="fas fa-desktop fa-2x"></i> Ensamble Desktops</h4>
+                    
+                </div>
+                <div class="card-body ">
+                    <form action="desktops/add" method="POST"  class="guarda">
+                    <div class="form-row">
+                            <div class="col-md-2 my-2">
+                                    <label for="">Total Ensambles</label>
+                                    
+                                    <input name="numero" id="numero" type="number" class="form-control"  placeholder="" value="<%= (ultimo!== null)? ultimo.serieEnsamble.numero+1 : 1  %>" >
+                                </div>
+                        <div class="col-md-3 my-2">
+                            <label for="">Nueva serie a generar:</label>
+                            <input name="serienueva" id="serienueva" type="text" placeholder= "Aca se generará su nueva Serie" class="form-control" readonly >
+                        </div>
+                        <div class="col-md-3 my-2">
+                                <label for="">Fecha de hoy:</label>
+                                <input name="fechahoy" id="fechahoy" type="text" class="form-control" readonly >
+                            </div>
+                        
+                        <div class="col-md-3 my-2">
+                                <label for="">Ultima serie guardada</label>
+                                <input name="ultimaserie" id="ultimaserie" type="text" placeholder= "" value="<%= (ultimo!== null)? ultimo.serieEnsamble.serie +' por: '+ultimo.usuario.usuario: 'vacio'  %>" class="form-control" readonly>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                            <div class="col-md-3 my-2">
+                                <input name="modpb" type="text" placeholder="MAINBOARD MODELO" class="form-control text-uppercase" required>  
+                            </div>
+                            <div class="col-md-3 my-2">
+                                <input name="seriepb" type="text" placeholder="MAINBOARD SERIE" class="form-control text-uppercase" required>
+                            </div>
+                            <div class="col-md-3 my-2">
+                                <input name="modproc" id= "modproc" type="text" placeholder="PROCESADOR MODELO" class="form-control text-uppercase" required>
+                           </div>
+                            <div class="col-md-3 my-2">
+                                    <input name="serieproc" type="text" placeholder="PROCESADOR SERIE" class="form-control text-uppercase" required>
+                            </div>
+                            
+                    </div>
+                    <div class="form-row">
+                            <div class="col-md-3 my-2">
+                                    <input name="modmem" type="text" placeholder="M.RAM MODELO/S" class="form-control text-uppercase" required>
+                            </div>
+                            <div class="col-md-3 my-2">
+                                    <input name="seriemem" type="text" placeholder="M.RAM SERIE/S" class="form-control text-uppercase" required>
+                            </div>
+                            <div class="col-md-3 my-2">
+                                <input name="modhdd" type="text" placeholder="HDD MODELO" class="form-control text-uppercase" required>
+                            </div>
+                            <div class="col-md-3 my-2">
+                                <input  name="seriehdd" type="text" placeholder="HDD SERIE" class="form-control text-uppercase" required>
+                            </div>
+                            
+                        </div>
+                        <div class="form-row">
+                                <div class="col-md-2 my-2">
+                                        <input  name="modudvd" type="text" placeholder="UDVD MODELO" class="form-control text-uppercase">
+                                    </div>
+                                    <div class="col-md-3 my-2">
+                                        <input  name="serieudvd" type="text" placeholder="UDVD SERIE" class="form-control text-uppercase">
+                                    </div>
+                                    <div class="col-md-3 my-2">
+                                            <input  name="case" type="text" placeholder="CASE" class="form-control text-uppercase">
+                                        </div>
+                                    
+                        </div>
+                          <div class="form-row">
+                            <div class="col-md-2 offset-5 my-2 ">
+                                <button id="guardar" type="submit" class="btn btn-outline-success btn-block" ><i class="far fa-save fa-2x"></i></button>
+                            </div>
+                          </div>  
+                    </form>
+                </div>
+            </div>
+            </div>
+    </div>
+    <div class="row">
+       
+        <div class="col-md-12">
+
+                <table class="table table-bordered table-responsive ">
+                            
+                        <thead class="thead-dark">
+                            <th><small>N#</small></th>
+                            <th><small>Serie</small></th>
+                            <th><small>Board Modelo </small></th>
+                            <th><small>Board Serie</small></th>
+                            <th><small>Proc Modelo</small></th>
+                            <th><small>Proc  Serie</small></th>
+                            <th><small>M.Ram Modelo</small></th>
+                            <th><small>M.Ram Serie</small></th>
+                            <th><small>HDD Modelo</small></th>
+                            <th><small>HDD Serie</small></th>
+                            <th><small>UDvd Modelo</small></th>
+                            <th><small>UDvd Serie</small></th>
+                            <th><small>Case</small></th>
+                            <th><small>Operaciones</small></th>
+                        </thead>
+                        <tbody>
+                           
+                                <% todos.forEach(function(pc,cont=0){ %>
+                            <tr>
+                                <td><small> <%= cont+=1 %> </small></td>
+                                <td><small> <%= pc.serieEnsamble.serie %> </small></td>
+                                <td><small><%= pc.mainboard.descripcion %></small></td>
+                                <td><small><%= pc.mainboard.serie %></small></td>
+                                <td><small><%= pc.procesador.descripcion %></small></td>
+                                <td><small><%= pc.procesador.serie %></small></td>
+                                <td><small> <%= pc.memoria_ram.descripcion %> </small></td>
+                                <td><small><%= pc.memoria_ram.serie %></small></td>
+                                <td><small><%= pc.disco_duro.descripcion %></small></td>
+                                <td><small><%= pc.disco_duro.serie %></small></td>
+                                <td><small><%= pc.udvd.descripcion %></small></td>
+                                <td><small><%= pc.udvd.serie %></small></td>
+                                <td><small><%= pc.case.descripcion %></small></td>
+                                <td><small>
+                                        <a href="/desktops/delete/<%= pc._id %>" class="btn btn-danger btn-sm elimina"><i class="far fa-trash-alt"></i></a>
+                                        <a href="/desktops/editar/<%= pc._id %>" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
+                                       
+                                </td>
+                            </tr>
+                            <%})%>  
+                        <tbody>
+                    </table>  
+        </div>
+    </div>
+        
+        <div class="row justify-content-center">
+            <a href="/desktops/tdesktops/1" class="btn btn-link center-block">TODOS LOS ENSAMBLES</a>
+
+        </div>
+    
+</div>
+
+<% include partials/_footer %>
+
+<script>
+$(document).ready(function () {
+    
+    var fecha = new Date
+    var dia = fecha.getDate()
+    var mes = fecha.getMonth()+1
+    if (dia<=9){
+        dia= '0'+dia
+    }
+    if (mes<=9){
+        mes= '0'+mes
+    }
+    var anio = fecha.getFullYear()
+    var fechacorta= `${anio}-${mes}-${dia}` 
+    $('#fechahoy').val(fechacorta);
+    
+    $('#modproc').on('focusout', function () {
+        $('#serienueva').val(generalaserie());
+        
+    });  
+    function generalaserie (fecha,tipo_proc,numero) {
+        tipo_proc =($('#modproc').val()) 
+        var deduccion;
+        if (String(tipo_proc).includes('cel') ||  String(tipo_proc).includes('CEL')) {
+            deduccion = 'cel'
+        }
+        else if (String(tipo_proc).includes('i5') || String(tipo_proc).includes('I5')) {
+            deduccion = 'i5'
+        }
+        else if (String(tipo_proc).includes('i7') || String(tipo_proc).includes('I7')) {
+            deduccion = 'i7'
+        }
+        else if (String(tipo_proc).includes('i3') || String(tipo_proc).includes('I3')) {
+             deduccion = 'i3'
+        }
+        else if (String(tipo_proc).includes('core2') || String(tipo_proc).includes('CORE2')) {
+             deduccion = 'C2duo'
+        }
+        else if (String(tipo_proc).includes('amd') || String(tipo_proc).includes('AMD')) {
+             deduccion = 'amd'
+        }
+        else if (String(tipo_proc).includes('pentium') || String(tipo_proc).includes('PENTIUM')) {
+             deduccion = 'pent'
+        }
+        else{
+            deduccion = 'cel'
+        }
+        fecha = `${anio}${mes}${dia}`
+        numero = $('#numero').val();
+        return `${fecha}${deduccion}0${numero}`
+    }
+    
+    
+    
+});
+</script>

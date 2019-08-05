@@ -1,0 +1,37 @@
+<% include partials/_header %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-3">
+            <% if (actselected) { %>
+          <div class="card">
+              <div class="card-header">
+                  <div class="card-body">
+                     
+                      
+                    <form action="/actdiarias/editar/<%=actselected._id%>" method="POST">
+
+                        <label for="">Hora de inicio</label>
+                        <input type="time" id="c"name="hinicio" class="my-2 form-control" placeholder="hora de inicio" value="<%= actselected.hinicio %>">
+                        <label for="">Hora de fin </label>
+                        <input type="time" name="hfin" class="my-2 form-control" placeholder="hora de fin" value="<%= actselected.hfin %>">
+                        <label for="">Actividad realizada </label>
+                        <textarea name="act_realizada" id="" class="form-control" cols="10" rows="2"><%= actselected.act_realizada %></textarea>
+                        <button type="submit" class="btn btn-primary btn-block my-3" ><i class="far fa-check-circle fa-2x"></i></button>
+                        </form>
+
+                  </div>
+              </div>
+          </div>
+
+           
+        <% } else { %>
+                <h1>no hay ningun caso seleccionado</h1>
+
+       <%} %>
+        </div>
+    </div>
+   
+            </div>
+
+</div>
+<% include partials/_footer %>

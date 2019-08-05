@@ -1,0 +1,41 @@
+<% include partials/_header %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-warning">
+                    <h4>ingreso de articulos </h4>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="/articulos/add" >
+                        <input type="text" name="codigo" class="form-control" placeholder="codigo">
+                        <input type="text" name="descripcion" class="form-control" placeholder="descripcion">
+                        <input type="text" name="serie" class="form-control" placeholder="nserie">
+                        <input type="text" name="nfact" class="form-control" placeholder="nfact">
+                        <input type="text" name="tipo_fact" class="form-control" placeholder="descripcion factura">
+                        <input type="text" name="valfact"  class="form-control" placeholder="valor de facturacion">
+                        <input type="text" name="ntransf" class="form-control" placeholder="numero de transferencia">
+                        <input type="text" name="dtransf" class="form-control" placeholder="descripcion de transferencia">
+                        <input type="text" name="guiast"  class="form-control" placeholder="guia servientrega">
+                        <input type="submit"  class="btn btn-info" value="enviar">
+                    </form>
+                  
+                </div>
+            </div>  
+ </div>
+ <div class="row">
+     <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="text-center">articulos procesados</h4>
+            </div>
+            <div class="card-body">
+     
+               
+            </div>
+        </div>
+     
+    </div>
+ </div>
+</div>
+<% include partials/_footer %>

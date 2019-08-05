@@ -1,0 +1,53 @@
+<% include partials/_header %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-3">
+            <% if (desktopselected) { %>
+          <div class="card">
+              <div class="card-header">
+                  <div class="card-body">
+                     
+                      
+                    <form action="/desktops/editar/<%=desktopselected._id %>" method="POST">
+
+                        <label for="">mainboard modelo</label>
+                        <input type="text" id="c"name="modpb" class="my-2 form-control" placeholder="modelo mainboard" value="<%= desktopselected.mainboard.descripcion %>">
+                        <label for="">mainboard serie </label>
+                        <input type="text" name="seriepb" class="my-2 form-control" placeholder="serie mainboard" value="<%= desktopselected.mainboard.serie %>">
+                        <label for="">Procesador modelo </label>
+                        <input type="text" name="modproc" class="my-2 form-control" placeholder="modelo de procesador" value="<%= desktopselected.procesador.descripcion %>">
+                        <label for="">Proccesador Serie</label>
+                        <input type="text" name="procserie" class="my-2 form-control" placeholder="serie de procesador" value="<%= desktopselected.procesador.serie %>">
+                        <label for="">Disco duro modelo </label>
+                        <input type="text" name="modhdd" class="my-2 form-control" placeholder="modelo de disco duro" value="<%= desktopselected.disco_duro.descripcion %>">
+                        <label for="">Disco duro serie</label>
+                        <input type="text" name="seriehdd"  placeholder="serie del disco duro" class="form-control" value= "<%= desktopselected.disco_duro.serie %>">
+                        <label for="">memoria ram modelo</label>
+                        <input type="text" name="modmem"  placeholder="modelo/s de la m ram" class="form-control" value= "<%= desktopselected.memoria_ram.descripcion %>"> 
+                        <label for="">serie de la memoria</label>
+                        <input type="text" name="seriemem" vplaceholder="serie/s de la memoria ram" class="form-control" value="<%= desktopselected.memoria_ram.serie %>">
+                        <label for="">unidad dvd modelo</label>
+                        <input type="text" name="udvdmod" placeholder="modelo de unidad dvd" class="form-control" value="<%= desktopselected.udvd.descripcion %>"> 
+                        <label for="">unidad dvd serie</label>
+                        <input type="text" name="udvdserie" placeholder="serie de unidad dvd" class="form-control" value="<%= desktopselected.udvd.serie %>"> 
+                        <label for="">case</label>
+                        <input type="text" name="case"  placeholder="modelo de case" class="form-control" value="<%= desktopselected.case.descripcion %>"> 
+                        <button type="submit" class="btn btn-primary btn-block my-3" ><i class="fas fa-check-circle fa-2x"></i><button>
+                        </form>
+
+                  </div>
+              </div>
+          </div>
+
+           
+        <% } else { %>
+                <h1>no hay ningun caso seleccionado</h1>
+
+       <%} %>
+        </div>
+    </div>
+   
+            </div>
+
+</div>
+<% include partials/_footer %>

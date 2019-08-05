@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth;">
+
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>SGC Casos: Compumicro</title>
+        <!--estilizando con bootstrap -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="fonts/all.min.css">
+        <link rel="stylesheet" href="fonts/miestilo.css">
+</head>
+
+<body>
+        
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
+                <a href="/" class="navbar-brand"><i class="fab fa-rev fa-2x"></i> RevLan 1.0 </a>
+                
+                <% if (usuario){%>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                                <li class="nav-item <%= (pagActiva==='/')? 'active':'' %>">
+                                        <a class="nav-link" href="/">Principal <span class="sr-only"></span></a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        Casos
+                                                </a>
+                                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                        <a class="dropdown-item" href="/pendientes">Pendientes</a>
+                                                        <a class="dropdown-item" href="/finalizados">Finalizados</a>
+                                                        <a class="dropdown-item" href="/asignaciones">Asignaciones</a>
+                                                        <a class="dropdown-item" href="/hojastock" >Hoja de stock</a>
+                                                        <a class="dropdown-item" href="/reportes">Reportes</a>
+                                                        <% if (usuario && usuario.correo==="admin1@compumicro.com.ec" || usuario.correo==="admin2@compumicro.com.ec" ||usuario.correo==="memm44@gmail.com" ){ %>
+                                                        <a class="dropdown-item" href="/monitor">Monitor Casos</a>
+                                                        <a class="dropdown-item" href="/monitor/tactividades/1">Monitor Actividades</a>
+                                                        <%}%>
+                                                        
+                                                </div>
+                                        </li>
+                                <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Ensambles
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                <a class="dropdown-item" href="/desktops">Desktop</a>
+                                                <a class="dropdown-item" href="/dvr">DVR</a>
+                                                
+
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="/desktops/impseries" target="_blank">Impresion Series Desktops</a>
+                                                <a class="dropdown-item" href="/dvr/impseries2" target="_blank">Impresion Series Dvr</a>
+                                                
+                                        </div>
+                                </li>
+                                <li class="nav-item <%= (pagActiva==='/actdiarias')? 'active':'' %>">
+                                                <a class="nav-link mr-5" href="/actdiarias">Actividades Diarias</a>
+                                                <li class="nav-item <%= (pagActiva==='/usuarios')? 'active':'' %>">
+                                                        <a class="nav-link mr-5 pr-5" href="/usuarios"><i class="fas fa-users-cog fa-lg"></i>Usuarios</a>
+                                                </li>
+                                        </li>
+                                        
+                                
+        
+                                        <form class="form-inline my-2 my-lg-0 " id="formcaso" method="GET">
+                                                        <input class="form-control mr-sm-2" id="codigocaso" type="Search" placeholder="Codigo de caso EJ: 015-122" aria-label="Search" >
+                                                        <button type= "submit" id="consulta" class="btn btn-outline-success my-2 my-sm-0 mr-5" data-toggle="modal" data-target="#ejemplo"><i class="fas fa-search "></i></button>
+                                                                <!-- Modal -->
+                                                
+                                                        <div class="modal fade" id="ejemplo" tabindex="-1" role="dialog" aria-labelledby="ejemplo" aria-hidden="true">
+                                                                        <div class="modal-dialog" role="document">
+                                                                        <div class="modal-content text-center">
+                                                                        <div class="modal-header">
+                                                                        <h5 class="modal-title " id="ejemplo">Mostrando Resultados..</h5>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                        </div>
+                                                                        <div class="modal-body" id="resultado_caso">
+                                                                                <h3>hola</h3>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                                                                        </div>
+                                                                        </div>
+                                                                        </div>
+                                                                </div>
+                                                                <!-- fin de la modal -->
+                                                      </form>
+                                                      <div class="dropdown">
+                                                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                <%= usuario.usuario %> <i class="fas fa-user-tag "></i>
+                                                        </a>
+                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                                <a class="dropdown-item" href="/usuarios/logout %>">Cerrar Sesion</a>
+                                                        </div>
+                                                </div>
+                                
+                        </ul>
+                        
+                        
+                        <% }%>
+        </nav>
+
+        

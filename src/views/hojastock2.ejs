@@ -1,0 +1,132 @@
+<% include partials/_header %>
+
+<div class="container">
+                
+    <div class="row">
+        <div class="col-12">
+            
+        
+        <div class="card border-dark">
+            
+             
+            <div class="card-header border-dark">
+                <div class="row">
+                    <div class="col-md-3">
+                            <div class="input-group">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text" id="basic-addon1">Hoy:</span>
+                                    </div>
+                              
+                    <input readonly type="text" name="fechahoy" class="form-control fechahoy">
+                    
+                    </div>
+                </div>
+                    <div class="col-md-6" >
+                           <h4 class="text-center"> <i class="fas fa-binoculars fa-2x"></i> Consulta</h4> 
+
+                    </div>
+                    <div class="col-md-3" >
+                         <div class="form-interno">
+                             <form action="/hojastock/buscarhoja" method="post">
+                                        <div class="input-group">
+                                            <input type="text"  name="busqueda" class="form-control form-control-sm my-1" value="" placeholder="ID hoja stock">
+                                            <div class="input-group-append">
+                                            <button type="submit" class="btn btn-outline-dark btn-sm"><i class="fas fa-search fa-2x"></i></button>
+                                            </div>
+                                        </div>
+                                </form> 
+                         </div>
+ 
+                     </div> 
+
+               
+                
+            </div>
+            
+            <div class="card-body">
+
+                </div>
+                <div class="row">
+                        
+                        <div class="col-md-12">
+                                <div>
+                                        <h4 class="text-center"> Resultados</h4>
+                                    </div>
+                                <table class="table table-bordered table-hover table-sm ">
+                                            
+                                        <thead class="thead-dark">
+                                            <th style="width:40px"><small>N#</small></th>
+                                            <th style="width:100px"><small>Responsable</small></th>
+                                            <th style="width:50px"><small>fecha</small></th>
+                                            <th style="width:200px"><small>ID de hoja</small></th>
+                                            <th style="width:80px"><small>Cod Caso </small></th>
+                                            <th style="width:60px"><small>Cant Art</small></th>
+                                            <th style="width:250px" ><small>Transferencias</small></th>
+                                           
+                                            
+                                            <th style="width:150px"><small>Operaciones</small></th>
+                                        </thead>
+                                        <tbody>
+                                            <tbody>
+                                                <% if (todos && todos.length>0){ %>
+                                                <% todos.forEach(function(sel,cont=0){ %>
+                                            <tr>
+                                                <td><small> <%= cont+=1 %> </small></td>
+                                                <td><small> <%= sel.encargado[0].usuario %> </small></td>
+                                                <td><small> <%= sel.fecha %> </small></td>
+                                                <td><small> <%= sel._id %> </small></td>
+                                                <td><small><%= sel.codigocaso %></small></td>
+                                                <td><small><%= sel.articulo.length %></small></td>
+                                                <td ><small><%= sel.transferencias %></small></td>
+                                                <td><small><a href="/hojastock/delete/<%= sel._id %>" class="btn btn-danger btn-sm elimina"><i class="far fa-trash-alt"></i></a>
+                                                    <a href="/hojastock/addart/<%= sel._id %>" class="btn btn-info btn-sm"><i class="fas fa-plus-circle"></i></a>
+                                                    <a href="/hojastock/detalle/<%= sel._id %>" class="btn btn-secondary btn-sm" target="_blank"><i class="fas fa-search-plus"></i></a>
+                                                    <a href="/hojastock/editarhoja/<%= sel._id %>" class="btn btn-secondary btn-sm"><i class="fas fa-edit"></i></a>
+                                                </small></td>
+                                                
+                                            </tr>
+                                            <%})%> 
+                                            <%}else{%>
+
+                                                <h3 class="text-center">No se encontró</h3>
+                                                <%}%>
+                                        <tbody>     
+                                        <tbody>
+                                    </table>  
+                        </div>
+                         
+                    </div>   
+                    <div class="row">
+                            
+                            <div class="col-3 offset-5">
+                                <a href="/hojastock/thojas/1" class="btn btn-link">TODAS LAS HOJAS</a>
+                            </div>
+                    </div> 
+                
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+<% include partials/_footer %>
+
+<script>
+$(document).ready(function () {
+    var fecha = new Date
+    var dia = fecha.getDate()
+    var mes = fecha.getMonth()+1
+    if (dia<=9){
+        dia= '0'+dia
+    }
+    if (mes<=9){
+        mes= '0'+mes
+    }
+    var anio = fecha.getFullYear()
+    var fechacorta= `${anio}-${mes}-${dia}` 
+    var fechacortaserie= `${anio}${mes}${dia}`
+    $('.fechahoy').val(fechacorta);
+    $('#fechaoculta').hide();
+
+});
+</script>

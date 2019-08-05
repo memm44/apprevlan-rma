@@ -1,0 +1,40 @@
+<% include partials/_header %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-3">
+            <% if (dvrselected) { %>
+          <div class="card">
+              <div class="card-header">
+                  <div class="card-body">
+                     
+                      
+                    <form action="/dvr/editar/<%=dvrselected._id %>" method="POST">
+
+                        <label for="">dvr modelo</label>
+                        <input type="text" id="c"name="dvrdesc" class="my-2 form-control" placeholder="ingrese modelo dvr" value="<%= dvrselected.dvr.descripcion %>">
+                        <label for="">dvr serie </label>
+                        <input type="text" name="dvrserie" class="my-2 form-control" placeholder=" ingrese serie dvr" value="<%= dvrselected.dvr.serie %>">
+                        <label for="">hdd modelo </label>
+                        <input type="text" name="hdddesc" class="my-2 form-control" placeholder="ingrese modelo disco duro" value="<%= dvrselected.disco_duro.descripcion %>">
+                        <label for="">hdd Serie</label>
+                        <input type="text" name="hddserie" class="my-2 form-control" placeholder="ingrese serie disco duro" value="<%= dvrselected.disco_duro.serie %>">
+  
+                        <button type="submit" class="btn btn-primary btn-block my-3" ><i class="fas fa-check-circle fa-2x"></i></button>
+                        </form>
+
+                  </div>
+              </div>
+          </div>
+
+           
+        <% } else { %>
+                <h1>no hay ningun caso seleccionado</h1>
+
+       <%} %>
+        </div>
+    </div>
+   
+            </div>
+
+</div>
+<% include partials/_footer %>

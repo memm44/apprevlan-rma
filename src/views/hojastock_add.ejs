@@ -1,0 +1,124 @@
+<% include partials/_header %>
+
+<div class="container">
+        <% if (mensaje && mensaje.length>0) {%>
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                    <img src="img/comprobado.png" alt="..."><strong> <%= mensaje %></strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>   
+        <% } %>  
+    <div class="row">
+        <div class="col-12">
+         <div class="card border-dark">
+            <div class="card-header border-dark">
+                <div class="row">
+                  <div class="col-md-3 offset-4" >
+                           <h4 class="text-center"> <i class="fas fa-tasks fa-2x"></i>  Hoja Stock</h4> 
+                    </div>
+                    <div class="col-md- mx-0">
+                        <a href="/hojastock" class="btn btn-link" ><i class="fas fa-arrow-circle-left fa-3x"></i>Listo</a>
+                    </div>
+                 </div>
+                </div>
+            <div class="card-body">
+                <form action="/hojastock/addart" method="post" class="guarda">
+                <div class="form-row">
+                        
+                    <div class="col-md-3">
+                            <label for="" clas>seleccionado:</label>
+                            <input type="text" name="id"  class="form-control" value="<%= articulos._id %>" readonly>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="">codigo de articulo</label>
+                        <input type="text" name="codigoart" class="form-control" placeholder="ingrese codigo de articulo">
+
+                    </div>
+                    <div class="col-md-3">
+
+                        <label for="">descripcion de articulo</label>
+                        <input type="text" name="descripcion" class="form-control" placeholder="ingrese descripcion del articulo">
+                    </div>
+                    <div class="col-md-3">
+
+                        <label for="">cantidad articulos del item</label>
+                        <input type="number" min="0" name="cantidad" class="form-control" placeholder="cantidad de articulos">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-3">
+
+                        <label for="">Observacion</label>
+                        <textarea name="observacion" id="" cols="10" rows="1" class="form-control"></textarea>
+                    </div>
+                    <div class="col-md-3">
+                            <label for="">Completo?</label>
+                            <input type="text" name="completo" class="form-control" placeholder="ingrese si vino o no completo y lo que le falta">
+
+                    </div>
+                    <div class="col-md-3">
+
+                        <label for="">Bodega</label>
+                        <input type="text" name="bodega" class="form-control" placeholder="ingrese la bodega a la que irá el producto">
+                    </div>
+                    <div class="col-md-3">
+
+                            <button type="submit" class="btn btn-outline-success my-2 btn-block"><i class="far fa-save fa-2x"></i></button>
+                        </div>
+                    </form>
+                
+                </div>
+                
+
+                <div class="row mt-4">
+            
+                        <div class="col-md-12">
+                
+                                <table class="table table-bordered table-sm ">
+                                            
+                                        <thead class="thead-dark">
+                                            <th><small>N#</small></th>
+                                            <th><small>Codigo de Art</small></th>
+                                            <th><small>Descripcion </small></th>
+                                            <th><small>Cantidad</small></th>
+                                            <th><small>Observacion</small></th>
+                                            <th><small>Completo</small></th>
+                                            <th><small>Bodega</small></th>
+                                            <th><small>Operaciones</small></th>
+                                        </thead>
+                                        <tbody>
+                                                <tbody>
+                                                    <% if(articulos.articulo && articulos.articulo.length>0){%>
+                                                    <% articulos.articulo.forEach(function(sel,cont=0){ %>
+                                                <tr>
+                                                    <td><small> <%= cont+=1 %> </small></td>
+                                                    <td><small> <%= sel.codigo %> </small></td>
+                                                    <td><small> <%= sel.descripcion %> </small></td>
+                                                    <td><small> <%= sel.cantidad_items %> </small></td>
+                                                    <td><small> <%= sel.observacion %> </small></td>
+                                                    <td><small><%= sel.completo %></small></td>
+                                                    <td><small><%= sel.bodega_final %></small></td>
+                                                    <td><small><a href="/hojastock/eliminaarthoja/<%= articulos._id %>/<%= sel._id %>" class="btn btn-danger btn-sm elimina"><i class="far fa-trash-alt"></i></a>
+                                                        <a href="/hojastock/editararthoja/<%= sel._id %>" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a></small></td>
+                                                    
+                                                </tr>
+                                                <%})%>  
+                                                <%} else {%>
+                                                    <h3>no hay articulos</h3>
+                                                    <%}%>
+                                            <tbody> 
+                                    </table>  
+                        </div>
+                         
+                    </div>   
+                  
+                
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+<% include partials/_footer %>
+

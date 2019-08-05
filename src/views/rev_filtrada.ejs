@@ -1,0 +1,83 @@
+<% include partials/_header %>
+<% if(mensaje && mensaje.length>0){%>
+    <div class="alert alert-info">
+        <%= mensaje %>
+    </div>
+    <% }%>
+<div class="container">
+    
+        <div class="row">
+                <div class="col-md-12">
+                <div class="card border-dark">
+                        <div class="card-header border-dark">
+                                <div class="row">
+                                <div class="col-md-4">
+                                                <h4><i class="fas fa-book-reader fa-2x"></i> Ultimas revisiones</h4>
+                                </div>
+                                <div class="col-md-4">
+                                                <form action="/actdiarias/buscar" method="POST" target="_blank">
+                                                    <div class="input-group">
+                                                            <input type="text"  name="busqueda" class="form-control form-control-sm my-1" value="" placeholder="Fecha ó Codigo de Caso" >
+                                                            <div class="input-group-append">
+                                                            <button type="submit" class="btn btn-outline-dark btn-sm"><i class="fas fa-search fa-2x"></i>   </button>
+                                                            </div>
+                                                        </div>
+                                                </form>
+                                               
+                                        </div>
+                                </div>                      
+                        </div>
+                    <div class="card-body">
+                        
+                        <table class="table table-bordered table-hover table-sm">
+                            <thead class="bg-info">
+                            <th><small>Encargado</small></th>
+                            <th><small>Tienda</small></th>
+                            <th><small>Caso</small></th>
+                            <th><small>Fecha</small></th>
+                            <th style="width:70px"><small>Status</small></th>
+                            <th style="width:300px"><small>Detalle Status</small></th>
+                            <th style="width:120px"><small>Tipo de Caso</small></th>
+                            <th style="width:180px" ><small>Articulos</small></th>
+                        </thead>
+                        <tbody>
+                          
+                            <% caso.forEach(function(info){ %>
+                                
+                                <tr>
+                                    <td><small>
+                                            <%= info.encargado[0].usuario %></small></td>
+                                    <td><small>
+                                            <%= info.tienda.nombre %></small></td>
+                                    <td><small>
+                                            <%=info.ncaso.codigocaso %></small></td>
+                                    <td><small>
+                                            <%=info.fechaIng %></small></td>
+                                   
+                                    <td><small>
+                                            <%= info.status.titulo %></small></td>
+                                    <td><small>
+                                                <%= info.status.descripcion %></small></td>
+                                    <td><small>
+                                            <%= info.tipo_caso%></small></td>
+                                   
+                                    <td><small>
+                                            <% for (var i=0; i< info.articulos.length;i++){ %>
+                                                <%= info.articulos[i].descripcion %>
+                                            <% } %>
+                                               </small></td>
+                                            
+                                </tr>
+             
+                                <%})%>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+            </div>
+   
+        </div>
+
+</div>
+
+<% include partials/_footer %>

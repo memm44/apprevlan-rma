@@ -1,0 +1,49 @@
+<% include partials/_header %>
+
+<div class="container">
+        
+    <div class="row">
+        <div class="col-md-12">
+        <div class="card border-dark">
+            <div class="card-header border-dark">
+                    <h4> <i class="fas fa-file-invoice-dollar fa-2x"></i>  Generar Reporte Tecnico</h4>
+
+            </div>
+            <div class="card-body">
+                
+                <table class="table table-bordered table-hover table-sm">
+                    <thead class="bg-info">
+                    <th><small>N°</small></th>
+                    <th><small>Tienda</small></th>
+                    <th><small>Articulo/s</small></th>
+                    <th><small>n de caso</small></th>
+                    <th><small>Tipo de caso</small></th>
+                    <th><small>Reporte Final</small></th>
+                    <th style="width:40px"><small>Imprimir</small></th>
+                </thead>
+                <tbody>
+                    <% for (var i=0;i<casos.length;i++) {%>
+                        <tr> 
+                            <td><small><%= i+1 %></small></td>
+                            <td><small><%= casos[i].tienda.nombre %></small></td>
+                            <td><small><%= casos[i].articulos[0].descripcion %></small></td>
+                            <td><small><%= casos[i].ncaso.codigocaso %></small></td>
+                            <td><small><%= casos[i].tipo_caso %></small></td>
+                            <td><small><%= casos[i].rep_final %></td>    
+                            <td>
+                                
+                                <a href="/finalizados/<%= casos[i]._id %>" target="_blank" class="btn btn-info btn-sm btn-block"><i class="far fa-file-alt "></i></a>
+                            </td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+</div>
+
+<% include partials/_footer %>

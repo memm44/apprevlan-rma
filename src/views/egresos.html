@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>E.E Compumicro</title>
+    <!--estilizando con bootstrap -->
+    <link rel="stylesheet" href="../public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../public/css/fontawesome.min.css">
+    
+</head>
+<body>
+    
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-info">
+            <a class="navbar-brand" href="#">Sistema</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="creacion.html">Principal <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="#">Egresos</a>
+                <a class="nav-item nav-link disabled" href="#">Ensambles</a>
+                
+                </div>
+            </div>
+</nav>
+    <div class="container mt-5 pt-3">
+        
+        <div class="row">
+
+            <!--formulario-->
+            <div class="col-md-12">
+                <div class="card border-success">
+                    <div class="card-header text-center bg-success text-white">
+                        <h3 class="font-weight-light text-uppercase">Formulario de Egresos</h3>
+                     </div>
+                    <div class="card-body">
+                        <form action="/add" method="POST" class="was-validated" >
+                            <div class="form-row">
+                                <div class="form-group col-md-2 my-2 ">
+                                    <label for="" class="font-italic">Fecha</label>
+                                    <input type="date" name="fechaACT" value="" placeholder="ingrese fecha actual" class="form-control" required>
+                                </div>
+                               
+
+                                <div class="form-group col-md-2 my-2">
+                                <label for="selectTienda" class="font-italic" >Tienda</label>
+                                <select class="custom-select" id="selectTienda" required>
+                                    <option value="">Seleccione Tienda</option>
+                                    <option value="1">Mejia</option>
+                                    <option value="2">Machala</option>
+                                    <option value="3">Manta</option>
+                                    <option value="4">Porto Viejo</option>
+                                    <option value="5">Babahoyo</option>
+                                    <option value="6">Playas</option>
+                                    <option value="7">Loja</option>
+                                    <option value="8">Duran</option>
+                                    <option value="9">Bahia de C</option>
+                                    <option value="10">Daule</option>
+                                    <option value="11">Peninsula</option>
+                                    <option value="12">El Dorado</option>
+                                </select>
+                                </div>
+                                <div class="form-group col-md-1 my-2">
+                                    <label for="" class="font-italic">Caso</label>
+                                    <input type="text" name="ncaso" value="" placeholder="N°" class="form-control" required>
+                                </div>
+                                <div class="form-group col-md-7 my-2">
+                                    <label for="" class="font-italic">Reporte/Daño</label>
+                                    <input type="text" name="reporte" value="" placeholder="Ingrese daño del producto" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                    
+                                    <div class="col-md-6 my-2">
+                                    
+                                <label for="selectTiposerv" class="font-italic">Tipo de Servicio</label>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="c1" name="radio-stacked" required>
+                                        <label class="custom-control-label" for="c1">Garantia</label>
+                                    </div>
+                                    <div class="custom-control custom-radio mb-3">
+                                        <input type="radio" class="custom-control-input" id="c2" name="radio-stacked" required>
+                                        <label class="custom-control-label" for="c2">Servicio Tecnico</label>
+                                        <div class="invalid-feedback">More example invalid feedback text</div>
+                                    </div>
+                                </div>
+                                    <div class="col-md-6 my-2">
+                                        <label for="" class="font-italic">Facturacion</label>
+                                        <input type="text" name="reporte" value="" placeholder="Ingrese Monto" class="form-control">
+                                    </div>
+                                    
+                            </div>
+                            <div class="form-row">
+                                    
+                                    <div class="form-group col-md-12">
+                                        <label for="" class="font-italic">Actividad Realizada</label>
+                                        <textarea name="desc_act" id="" cols="98" placeholder="Ingrese descripcion de la actividad realizada" required></textarea>
+                                    </div>
+                                    
+                                    
+                            </div>
+                            
+                                        <button type="submit" class="btn btn-outline-info">Agregar</button>
+                                   
+                        </form> 
+                    </div>
+                </div>
+            </div>  
+            </div>
+
+    </div>
+            <!-- listar elementos-->
+                <hr>
+    
+        </div>
+            
+        

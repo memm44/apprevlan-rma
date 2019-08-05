@@ -1,0 +1,59 @@
+<% include partials/_header %>
+<% if(mensaje && mensaje.length>0){%>
+    <div class="alert alert-info">
+        <%= mensaje %>
+    </div>
+    <% }%>
+<div class="container">
+    
+    <div class="row">
+            
+        <div class="card">
+            <div class="card-body">
+                   
+                    <table class="table table-bordered table-hover ">
+                            <thead class="thead-dark">
+                                <th style="width:10px"><small>N°</small></th>
+                                <th style="width:15px"><small>tienda</small></th>
+                                <th style="width:200px"><small>Articulo/s</small></th>
+                                <th style="width:25px"><small>n de caso</small></th>
+                                <th style="width:15px"><small>tipo caso</small></th>
+                                <th style="width:500px"> <small>rep_final</small></th>
+                                <th style="width:150px"><small >operaciones BD</small></th>
+                            </thead>
+                            <tbody>
+                                <% for (var i=0;i<caso.length;i++) {%>
+                                <tr>
+                                    <td><small>
+                                            <%= i+1 %></small></td>
+                                    <td><small>
+                                            <%= caso[i].tienda.nombre %></small></td>
+                                    <td><small>
+                                            <% if (caso[i].articulos.length >1) {%>
+                                                <p>varios <strong>(<%=caso[i].articulos.length %>)</strong> </p> 
+                                            <%}else{%>
+                                                <%= caso[i].articulos[0].descripcion %></small></td>
+                                            <%}%>
+                                    <td><small>
+                                            <%= caso[i].ncaso.numcaso %></small></td>
+                                    <td><small>
+                                            <%= caso[i].tipo_caso %></small></td>
+                                    <td class="bg-<%= caso[i].rep_final ? 'warning':'' %>"><small>
+                                            <%= caso[i].rep_final %>
+                                    </td>
+                                    <td>
+                                        <a href="/turn/<%= caso[i]._id %>" class="btn <%= (caso[i].status==='finalizado') ? 'btn-success':'btn-dark'%> btn-sm">L</a>
+                                        <a href="/delete/<%= caso[i]._id %>" class="btn btn-danger btn-sm eliminacaso">X</a>
+                                        <a href="/editar/<%= caso[i]._id %>" class="btn btn-info btn-sm">A</a>
+                                    </td>
+                                </tr>
+                                <% } %>
+                            </tbody>
+                        </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<% include partials/_footer %>

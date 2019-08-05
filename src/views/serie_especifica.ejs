@@ -1,0 +1,65 @@
+<% include partials/_header %>
+<% if(mensaje && mensaje.length>0){%>
+    <div class="alert alert-info">
+        <%= mensaje %>
+    </div>
+    <% }%>
+<div class="container-fluid mx-2">
+    
+    <div class="row">
+            
+        <div class="card">
+            <div class="card-body">
+                   
+                    <table class="table table-bordered table-hover table-responsive ">
+                            
+                            <thead class="thead-dark">
+                                <th><small>n#</small></th>
+                                <th><small>Serie</small></th>
+                                <th><small>Board modelo </small></th>
+                                <th><small>Board serie</small></th>
+                                <th><small>Proc Modelo</small></th>
+                                <th><small>Proc  Serie</small></th>
+                                <th><small>M.Ram Modelo</small></th>
+                                <th><small>M.Ram Serie</small></th>
+                                <th><small>HDD Modelo</small></th>
+                                <th><small>HDD Serie</small></th>
+                                <th><small>UDvd</small></th>
+                                <th><small>UDvdserie</small></th>
+                                <th><small>Case</small></th>
+                                <th><small>operaciones BD</small></th>
+                            </thead>
+                            <tbody>
+                               
+                                    <% serie.forEach(function(pc,cont=0){ %>
+                                <tr>
+                                    <td><small> <%= cont+=1 %> </small></td>
+                                    <td><small> <%= pc.serieEnsamble.serie %> </small></td>
+                                    <td><small><%= pc.mainboard.descripcion %></small></td>
+                                    <td><small><%= pc.mainboard.serie %></small></td>
+                                    <td><small><%= pc.procesador.descripcion %></small></td>
+                                    <td><small><%= pc.procesador.serie %></small></td>
+                                    <td><small> <%= pc.memoria_ram.descripcion %> </small></td>
+                                    <td><small><%= pc.memoria_ram.serie %></small></td>
+                                    <td><small><%= pc.disco_duro.descripcion %></small></td>
+                                    <td><small><%= pc.disco_duro.serie %></small></td>
+                                    <td><small><%= pc.udvd.descripcion %></small></td>
+                                    <td><small><%= pc.udvd.serie %></small></td>
+                                    <td><small><%= pc.case.descripcion %></small></td>
+                                    <td><small>
+                                            <a href="/desktops/delete/<%= pc._id %>" class="btn btn-danger btn-sm elimina" ><i class="far fa-trash-alt"></i></a>
+                                            <a href="/desktops/editar/<%= pc._id %>" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
+                                           
+                                    </td>
+                                </tr>
+                                <%})%>  
+                            <tbody>
+                        </table>   
+            
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<% include partials/_footer %>

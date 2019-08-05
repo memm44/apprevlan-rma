@@ -1,0 +1,37 @@
+{
+  "name": "RevLan",
+  "version": "1.0.0",
+  "description": "app para controlar Revisiones de Casos RMA ",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "supervisor src/app.js"
+  },
+  "keywords": [],
+  "author": "Miguel Mavo",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.3",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^2.0.2",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "html-template-pdf": "^1.0.3",
+    "moment": "^2.23.0",
+    "mongoose": "^5.3.1",
+    "mongoose-auto-increment-fix": "^5.0.2",
+    "mongoose-sequence": "^5.0.1",
+    "morgan": "^1.9.1",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^5.0.1",
+    "phantomjs-prebuilt": "^2.1.16",
+    "serve-favicon": "^2.5.0"
+  },
+  "devDependencies": {
+    "supervisor": "^0.12.0"
+  }
+}

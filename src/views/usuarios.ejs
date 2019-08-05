@@ -1,0 +1,54 @@
+<% include partials/_header %>
+<% if (usuario && usuario.correo==="admin1@compumicro.com.ec" || usuario.correo==="admin2@compumicro.com.ec" ||usuario.correo==="memm44@gmail.com" ){ %>
+<div class="container px-5 my-5">
+        
+    <h4 class="text-center"><i class="fas fa-users fa-2x"></i> Usuarios Registrados </h4>
+    <div class="row">
+            
+        <div class="col-md-4 mx-auto">
+            <div class="card">
+                    <% if(mensaje && mensaje.length>0){%>
+                        <div class="alert alert-info" role="alert"><%= mensaje[0] %></div>
+                        <% }%>  
+                <div class="card-body">
+                        <table class="table table-bordered table-hover table-sm ">
+                            
+                                <thead class="thead-dark">
+                                    <th><small>#</small></th>
+                                    <th><small>Usuario</small></th>
+                                    <th><small>E-mail </small></th>
+                                    <th><small>Eliminar</small></th>
+
+                                    
+                                </thead>
+                             
+                                <tbody>
+                                   
+                                        <% usuarios.forEach(function(us,cont=0){ %>
+                                    <tr>
+                                        <td><small> <%= cont+=1 %> </small></td>
+                                        <td><small> <%= us.usuario %> </small></td>
+                                        <td><small><%= us.correo %></small></td>
+                                        <td><small><a href="/usuarios/delete/<%= us._id %>" class="btn btn-danger btn-sm elimina"><i class="far fa-trash-alt"></i></a></small></td>
+                                       
+                                        
+                                    <%})%>  
+                                <tbody>
+                                        
+                            </table>  
+                            <div class="text-center"><a href="/usuarios/signup" class="btn btn-outline-info"><i class="fas fa-user-plus fa-2x"></i></a></div>
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+<%}else{%>
+    
+<div class="text-center my-5">
+        <i class="far fa-times-circle fa-5x"></i>
+    <h1 class="display-3 text-center"> Acceso Denegado</h1>
+</div>
+<%}%>
+<% include partials/_footer %>

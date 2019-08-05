@@ -1,0 +1,284 @@
+<% include partials/_header %>
+
+<script src="public/jquery-3.3.1.slim.min"></script>
+<div class="container">
+
+        <!-- Flexbox container for aligning the toasts -->
+
+    <% if (mensaje && mensaje.length>0) {%>
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+                <img src="img/comprobado.png" alt="..."><strong> <%= mensaje %></strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>   
+    <% } %>
+    <% if (mensajebad && mensajebad.length>0) {%>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <img src="img/error.png" alt="..."><strong> <%= mensajebad %></strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>   
+    <% } %>
+    <div class="col-md-12">
+            <form action="/casos/add" method="POST" id="formcaso" class="guarda"   >
+        <div class="card border-info">
+            <div class="card-header text-center bg-info text-white ">
+                <div class="form-row">
+                        <div class="form-group col-md-2">
+                                <div class="input-group">
+                                        <div class="input-group-prepend  ">
+                                                <span class="input-group-text form-control-sm" id="basic-addon1">Hoy:</span>
+                                              </div>
+                                              <input type="text" id="fechahoy" name="fechahoy" class="form-control form-control-sm pl-1" readonly>
+                                </div> 
+                        </div>
+                        <div class="col-md-8">
+                                <h4 class="font-weight-light text-uppercase"><i class="fab fa-wpforms fa-2x"></i> Formulario de Ingreso</h4>
+                        </div>
+                </div>
+                
+            </div>
+            <div class="card-body">
+                
+                    
+                
+                    <div class="form-row">
+                        <div class="form-group col-md-2 my-2">
+                            <label for="selectTienda" class="font-italic">Tienda</label>
+                            <select class="custom-select" id="idtienda" name="desc_tienda" required>
+                                <option value="">Seleccionar</option>
+                                <option value="012">012-Mejia</option>
+                                <option value="015">015-Machala</option>
+                                <option value="014">014-Manta</option>
+                                <option value="09">09-Porto Viejo</option>
+                                <option value="08">08-Babahoyo</option>
+                                <option value="06">06-Playas</option>
+                                <option value="03">03-Loja</option>
+                                <option value="011">011-Riobamba</option>
+                                <option value="05">05-Duran</option>
+                                <option value="010">010-Bahia de C</option>
+                                <option value="016">016-Daule</option>
+                                <option value="07">07-Peninsula</option>
+                                <option value="01">01-Montañita</option>
+                                <option value="00">00-Otra</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-2 my-2 ">
+                            <label for="" class="font-italic">Numero de Caso</label>
+                            <input type="number" min="0" id="idcaso" name="ncaso" value="" placeholder="N#" class="form-control text-uppercase"
+                                required>
+                        </div>
+                        <div class="form-group col-md-2 my-2 ml-3">
+
+                            <label for="selectTiposerv" class="font-italic">Tipo de Caso</label>
+                            <div class="custom-control custom-radio" aria-required="true">
+                                <input type="radio" class="custom-control-input" id="r1" value="garantia" name="tipo_caso"
+                                    required>
+                                <label class="custom-control-label" for="r1">Garantia</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" id="r2" value="soporte tecnico" name="tipo_caso"
+                                    required>
+                                <label class="custom-control-label" for="r2">S Tecnico</label>
+
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" id="r3" value="stock" name="tipo_caso"
+                                    required>
+                                <label class="custom-control-label" for="r3">Stock</label>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-2 my-2 ">
+                            <label for="" class="font-italic">Fecha Ingreso a Computienda</label>
+                            <input type="text" id="fechaingct" name="fechaingct" value="" placeholder="EJ: 2019-03-16" class="form-control text-uppercase"
+                                required>
+                        </div>
+                        <div class="form-group col-md-3 my-2 ">
+                                <label for="" class="font-italic">Vendedor o Responsable</label>
+                                <input type="string" id="Vendedor" name="vendedor" value="" placeholder="Ingrese responsable" class="form-control text-uppercase mt-4"
+                                    required>
+                            </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-2 my-2 ml-3">
+                                <label for="" class="font-italic ">Nombre Cliente</label>
+                                <input type="text"  name="nombcliente" value="" placeholder="Ingrese Nombre " class="form-control form-control-sm text-uppercase">
+                            
+                            </div>
+                            <div class="form-group col-md-2 my-2 ml-3">
+                                <label for="" class="font-italic ">Apellido Cliente</label>
+                                <input type="text"  name="apcliente" value="" placeholder="Ingrese Apellido" class="form-control form-control-sm text-uppercase">
+                            
+                            </div>
+                            <div class="form-group col-md-4 my-2 ml-3">
+                                <label for="" class="font-italic ">Direccion</label>
+                              <textarea name="dircliente" class="form-control" id="" cols="30" rows="2"></textarea>
+                            
+                            </div>
+                            <div class="form-group col-md-3 my-2 ml-3">
+                                <label for="" class="font-italic ">Telefonos</label>
+                                <input type="text" name="telfcliente" value="" placeholder="Telefonos del Cliente" class="form-control form-control-sm text-uppercase">
+                            
+                            </div>
+                        </div>
+                    </div>
+                    <hr>   
+                    <h5 class="text-center"><i class="fas fa-dolly-flatbed fa-2x"></i> Datos del Artículo/Equipo</h5>
+                    <div class="form-row" >
+                        
+                        <div class=" form-group col-md-2 my-2" id="nfac">
+                            <label for="" class="font-italic ">Nfact</label>
+                            <input type="number" min="0" id="vnfac" name="nfactura" value="" placeholder="N°Fact" class="form-control form-control-sm text-uppercase">
+                        </div>
+                        <div class="form-group col-md-2 my-2">
+                            <label for="" class="font-italic">Codigo </label>
+                            <input type="text" name="cod_art" value="" placeholder="Cod" class="form-control form-control-sm  text-uppercase"
+                                required>
+                        </div>
+                        <div class="form-group col-md-3 my-2">
+                            <label for="" class="font-italic">Descripcion </label>
+                            <input type="text" name="desc_art" value="" placeholder="Descripcion" class="form-control form-control-sm text-uppercase"
+                                required>
+                        </div>
+                        <div class="form-group col-md-3 my-2">
+                            <label for="" class="font-italic">Reporte</label>
+                            <textarea type="text" name="desc_reporte" cols="35" placeholder="Ingrese Detalles del Reporte"
+                                class="form-control form-control-sm text-uppercase" required></textarea>
+                        </div>
+                        <div class="form-group col-md-2 my-2">
+                            <label for="" class="font-italic">Serie</label>
+                            <input type="text" name="nserie" value="" placeholder="Ingrese Serial" class="form-control form-control-sm text-uppercase"
+                                required>
+                        </div>
+                    </div>
+                    <div class="form-row" >
+                        <div class=" form-group col-md-3 my-2" id="nfac">
+                            <label for="" class="font-italic">Facturacion CompuTienda</label>
+                            <input type="text" name="ctfact" value="" placeholder="Cod/descripcion" class="form-control">
+                        </div>
+                        <div class="form-group col-md-2 my-2">
+                            <label for="" class="font-italic">Valor</label>
+                            <input type="number" min="0" name="valctfact" value="" placeholder="$$$" class="form-control">
+                        </div>
+                        <div class=" form-group col-md-3 my-2" id="nfac">
+                            <label for="" class="font-italic">Facturacion Compumicro Mejia</label>
+                            <input type="text" name="cmfact" value="" placeholder="Cod/descripcion" class="form-control">
+                        </div>
+                        <div class="form-group col-md-2 my-2">
+                            <label for="" class="font-italic">Valor</label>
+                            <input type="number" min="0"
+                             name="valcmfact" value="" placeholder="$$$" class="form-control">
+                        </div>  
+                        
+                        </div>
+                        <div class="form-row" >  
+                                <div class=" form-group col-md-8 my-2" id="nfac">
+                                        <label for="" class="font-italic">Transferencias <strong>Origen>Destino:numeroTransf</strong></label>
+                                        <input type="text" name="transferencias" value="" placeholder="Ejemplo:Mejia>Loja:4555,Loja>duran:5588 " class="form-control">
+                        </div>
+                       
+                        <!--boton-------------------------------------------------------  -->
+                        
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-2 offset-5">
+                            <button type="submit" aria-labelledby="guardar" id="guardar" class="btn btn-outline-success btn-block" data-toggle="tooltip" data-placement="top" title="Guardar Caso" ><i class="far fa-save fa-3x"></i> </button>
+                        </div>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+<!-- listar elementos-->
+<hr>
+<div class="container">
+    <h5 class="text-center">Casos Registrados el dia de hoy</h5>
+    <div class="row">
+        <table class="table table-bordered table-sm">
+            <thead class="thead-dark">
+                <th style="width:10px"><small>N°</small></th>
+                <th style="width:15px"><small>Tienda</small></th>
+                <th style="width:150px" ><small>Articulo/s</small></th>
+                <th style="width:40px"><small>N# Caso</small></th>
+                <th style="width:15px"><small>Tipo Caso</small></th>
+                <th style="width:500px"> <small>Reporte Final</small></th>
+                <th style="width:110px"><small >Operaciones</small></th>
+            </thead>
+            <tbody>
+                <% for (var i=0;i<casos.length;i++) {%>
+                <tr>
+                    <td><small>
+                            <%= i+1 %></small></td>
+                    <td><small>
+                            <%= casos[i].tienda.nombre %></small></td>
+                    <td><small>
+                            <% if (casos[i].articulos.length >1) {%>
+                                <p>varios <strong>(<%=casos[i].articulos.length %>)</strong> </p> 
+                            <%}else{%>
+                                <%= casos[i].articulos[0].descripcion %></small></td>
+                            <%}%>
+                    <td><small>
+                            <%= casos[i].ncaso.numcaso %></small></td>
+                    <td><small>
+                            <%= casos[i].tipo_caso %></small></td>
+                    <td class="bg-<%= casos[i].rep_final ? 'warning':'' %>"><small>
+                            <%= casos[i].rep_final %>
+                    </td>
+                    <td>
+                        <a href="/turn/<%= casos[i]._id %>" class="btn <%= (casos[i].status.titulo==='finalizado') ? 'btn-success btn-sm':'btn-dark btn-sm'%> "><i class="far fa-thumbs-up"></i></a>
+                        <a href="/delete/<%= casos[i]._id %>" class="btn btn-danger  eliminacaso btn-sm"><i class="far fa-trash-alt"></i></a>
+                        <a href="/editar/<%= casos[i]._id %>" class="btn btn-info btn-sm "><i class="fas fa-edit"></i></a>
+                    </td>
+                </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-12">
+        <div class="row justify-content-center">
+        <a href="/tcasos/1" class="mx-auto btn btn-link btn-center">TODOS LOS CASOS</a>
+        </div> 
+    </div> 
+</div>
+
+
+
+<% include partials/_footer %>
+
+<script>
+    
+    $(document).ready(function () {
+        var fecha = new Date
+    var dia = fecha.getDate()
+    var mes = fecha.getMonth()+1
+    if (dia<=9){
+        dia= '0'+dia
+    }
+    if (mes<=9){
+        mes= '0'+mes
+    }
+    var anio = fecha.getFullYear()
+    var fechacorta= `${anio}-${mes}-${dia}` 
+     $('#fechahoy').val(fechacorta);
+        $('.eliminacaso').on('click', function () {
+           
+           var resp = confirm('Seguro que lo desea eliminar ? ya no podra restaurar este registro')
+           if (resp) {
+           return true;
+           }else{
+           return false;
+           }
+       
+   });
+//    $('#guardar').on('click', function () {
+//         window.location.reload(true)
+//     });
+});
+
+   
+</script>

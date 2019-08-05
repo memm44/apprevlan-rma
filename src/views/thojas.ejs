@@ -1,0 +1,127 @@
+<% include partials/_header %>
+
+<div class="container">
+    
+        
+     <div class="row">
+         <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">               
+                    <div class="row">
+                        <div class="col-md-3">
+                                <form action="/hojastock/buscarhoja" method="post">
+                                    <div class="input-group">
+                                        <input type="text"  name="busqueda" class="form-control form-control-sm my-1" value="" placeholder="ID hoja stock">
+                                        <div class="input-group-append">
+                                        <button type="submit" class="btn btn-outline-dark btn-sm"><i class="fas fa-search fa-2x"></i></button>
+                                        </div>
+                                    </div>
+                            </form>
+                        </div>
+                        <div class="col-md-4 offset-2">
+                               <h5><i class="fas fa-tasks fa-2x"></i> TOTAL HOJAS STOCK </h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+         
+                        <table class="table table-bordered table-hover table-sm ">
+                                            
+                                <thead class="thead-dark">
+                                    <th style="width:40px"><small>N#</small></th>
+                                    <th style="width:100px"><small>Responsable</small></th>
+                                    <th style="width:50px"><small>fecha</small></th>
+                                    <th style="width:200px"><small>ID de hoja</small></th>
+                                    <th style="width:80px"><small>Cod Caso </small></th>
+                                    <th style="width:80px"><small>Cant Art</small></th>
+                                    <th ><small>Transferencias</small></th>
+                                   
+                                    
+                                    <th style="width:120px"><small>Accion</small></th>
+                                </thead>
+                                <tbody>
+                                    <tbody>
+                                        <% hoja.forEach(function(sel,cont=0){ %>
+                                    <tr>
+                                        <td><small> <%= cont+=1 %> </small></td>
+                                        <td><small> <%= sel.encargado[0].usuario %> </small></td>
+                                        <td><small> <%= sel.fecha %> </small></td>
+                                        <td><small> <%= sel._id %> </small></td>
+                                        <td><small><%= sel.codigocaso %></small></td>
+                                        <td><small><%= sel.articulo.length %></small></td>
+                                        <td ><small><%= sel.transferencias %></small></td>
+                                        <td><small><a href="/hojastock/detalle/<%= sel._id %>" class="btn btn-secondary btn-sm "><i class="fas fa-search-plus"></i></a>
+                                            
+                                        
+                                    </tr>
+                                    <%})%>  
+                                <tbody>     
+                                <tbody>
+                            </table>  
+                </div>
+               
+            </div>
+         
+        </div>
+     </div>
+     <br>   
+        <div class="row">
+            
+            <% if (paginas) {%>
+            <nav class="mx-auto">
+                <ul class="pagination">
+                                    <!-- primera pagina -->
+                    <% if (actual==1) {%>
+                    <li class="page-item disabled">
+                        <a href="#" class="page-link">Primera</a>
+                    </li>
+                    <%} else {%>
+                    <li class="page-item">
+                        <a href="/dvr/tdvrs/1" class="page-link">Primera</a>
+                    </li>
+                    <% } %>
+                                         <!-- paginas -->
+                    <% var i = (Number(actual) >5 ? Number(actual)-4 :1) %>
+                    <% if (i !== 1) {%>
+                  
+                            <a href="<%= i %>" class="page-link">...</a>
+                        <% } %>
+                        <% for (; i<= (Number(actual)+4) && i<= paginas; i++){%>
+                            <% if (i== actual) { %>
+                                <li class="page-item">
+                                    <a href="<%= i %>" class="page-link">
+                                    <%= i %>
+                                    </a>
+                                </li>
+                        <% } else { %>
+                            <li class="page-item">
+                                <a href="/dvr/tdvrs/<%= i %>" class="page-link">
+                                <%= i %>
+                                </a>
+                            </li>
+                            <% } %>
+                    <% if (i == Number(actual)+4 && i < paginas) {%>
+                        <li class="page-item">
+                            <a href="#" class="page-link">...</a>
+                        </li>
+                        <% } %>
+                    <% } %>  
+                                    <!-- ultima pagina -->
+                    <% if (actual==paginas) {%>
+                    <li class="page-item disabled">
+                        <a href="#" class="page-link">Ultima</a>
+                    </li>
+                    <%} else { %>
+                    <li class="page-item">
+                        <a  href="/dvr/tdvrs/<%=paginas%>" class="page-link">Ultimo</a>
+                    </li>
+                    <% } %>
+                </ul>
+            </nav>
+            <% } %>
+        
+       
+    </div>
+</div>
+
+<% include partials/_footer %>

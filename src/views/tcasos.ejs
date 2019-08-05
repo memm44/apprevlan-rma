@@ -1,0 +1,113 @@
+<% include partials/_header %>
+
+<div class="container">
+  
+    <div class="row">
+        <div class="col-md-12">
+            <form action="/buscar" method="post" >
+                <div class="input-group">
+                    <input type="text"  name="codcaso" class="form-control form-control-sm my-2" value="" placeholder="ingrese un codigo de caso especifico">
+                    <div class="input-group-append">
+                    <button type="submit" class="btn btn-outline-dark btn-sm my-2"><i class="fas fa-search fa-2x"></i></button>
+                    </div>
+                </form>
+                <table class="table table-bordered table-hover table-sm">
+              <thead class="thead-dark">
+                    <th style="width:20px"><small>N°</small></th>
+                    <th style="width:40px"><small>Tienda</small></th>
+                    <th style="width:100px"><small>Articulo/s</small></th>
+                    <th style="width:20px"><small>Codigo caso</small></th>
+                    <th style="width:20px"><small>Tipo caso</small></th>
+                    <th style="width:360px"><small>Reporte Final</small></th>
+                    <th style="width:40px"><small>Operaciones</small></th>
+                </thead>
+                <tbody>
+                    <% for (var i=0;i<casos.length;i++) {%>
+                    <tr>
+                        <td><small>
+                                <%= i+1 %></small></td>
+                        <td><small>
+                                <%= casos[i].tienda.nombre %></small></td>
+                        <td><small>
+                                <%= (casos[i].articulos.length>1)?casos[i].articulos.length+ ' Articulos' : casos[i].articulos[0].descripcion %></small></td>
+                        <td><small>
+                                <%= casos[i].ncaso.codigocaso %></small></td>
+                        <td><small>
+                                <%= casos[i].tipo_caso %></small></td>
+                        <td class="bg-<%= casos[i].rep_final ? 'warning':'' %>"><small>
+                                <%= casos[i].rep_final %>
+                        </td>
+                        <td>
+                            <a href="/delete/<%= casos[i]._id %>" class="btn btn-danger btn-sm elimina"><i class="far fa-trash-alt"></i></a>
+                            <a href="/editar/<%= casos[i]._id %>" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
+                        </td>
+                    </tr>
+                    <% } %>
+                </tbody>
+             </table>
+           
+        </div>
+        <div class="row">
+                <div class="col-md-8 offset-4">
+        
+            <% if (paginas) {%>
+                <nav class="mx-auto ">
+                    <ul class="pagination">
+                                        <!-- primera pagina -->
+                        <% if (actual==1) {%>
+                        <li class="page-item disabled">
+                            <a href="#" class="page-link">Primera</a>
+                        </li>
+                        <%} else {%>
+                        <li class="page-item">
+                            <a href="/tcasos/1" class="page-link">Primera</a>
+                        </li>
+                        <% } %>
+                                             <!-- paginas -->
+                        <% var i = (Number(actual) >5 ? Number(actual)-4 :1) %>
+                        <% if (i !== 1) {%>
+                      
+                                <a href="<%= i %>" class="page-link">...</a>
+                            <% } %>
+                            <% for (; i<= (Number(actual)+4) && i<= paginas; i++){%>
+                                <% if (i== actual) { %>
+                                    <li class="page-item">
+                                        <a href="<%= i %>" class="page-link">
+                                        <%= i %>
+                                        </a>
+                                    </li>
+                            <% } else { %>
+                                <li class="page-item">
+                                    <a href="/tcasos/<%= i %>" class="page-link">
+                                    <%= i %>
+                                    </a>
+                                </li>
+                                <% } %>
+                        <% if (i == Number(actual)+4 && i < paginas) {%>
+                            <li class="page-item">
+                                <a href="#" class="page-link">...</a>
+                            </li>
+                            <% } %>
+                        <% } %>  
+                                        <!-- ultima pagina -->
+                        <% if (actual==paginas) {%>
+                        <li class="page-item disabled">
+                            <a href="#" class="page-link">Ultima</a>
+                        </li>
+                        <%} else { %>
+                        <li class="page-item">
+                            <a  href="/tcasos/<%=paginas%>" class="page-link">Ultimo</a>
+                        </li>
+                        <% } %>
+                    </ul>
+                </nav>
+                
+                <% } %>
+            
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<% include partials/_footer %>
