@@ -1,6 +1,6 @@
 # revlan-node 1.0
 
-Aplicacion Web desarrollada con Node js y Mongo DB
+Aplicacion Web desarrollada con Node js y Mongo DB para la empresa Compumicro Latin America Corp - Ecuador
 
 Funciones Generales:
 
