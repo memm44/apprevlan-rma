@@ -4,7 +4,7 @@ Aplicacion Web desarrollada con Node js y Mongo DB para la empresa Compumicro La
 
 Funciones Generales:
 
-*Alamacenar Informacion de Clientes y Productos Representados como un Caso RMA
+*Almacenar Informacion de Clientes y Productos Representados como un Caso RMA
 *Controlar las asignaciones de Casos a los Tecnicos del Departamento 
 *Alamacenar y controlar informacion de los ensambles de Equipos informaticos y de Video
 *Dar Seguimiento al Status de los Casos detallando las actividades sobre el
